@@ -1,0 +1,94 @@
+body {
+	font-family: var(--font-default);
+	font-size: 18px;
+}
+
+main {
+	font-size: 130%;
+	font-weight: bolder;
+}
+
+.topnav a {
+	font-size: 20px;
+	font-family: Roboto, sans-serif;
+}
+
+.modal-btn {
+	font-size: 145%;
+}
+
+.footer {
+	font-family: var(--font-slab);
+}
+
+.button {
+	font-size: 16px;
+}
+
+.smFont {
+	font-size: 16px;
+}
+
+label {
+	font-family: var(--font-default);
+	font-size: 17px;
+	font-weight: normal;
+}
+
+.text-control {
+	font-size: 20px;
+}
+
+.formData[data-error]::after {
+	font-size: 0.4em;
+	line-height: 0.3;
+}
+
+.checkbox-label,
+.checkbox2-label {
+	font-size: 12px;
+	font-weight: normal;
+}
+
+.custom-select {
+	font-family: Arial, sans-serif;
+	font-size: 1.1rem;
+	font-weight: normal;
+}
+
+.btn-submit,
+.btn-signup {
+	font-size: 1rem;
+}
+
+.text-label {
+	font-weight: normal;
+	font-size: 16px;
+}
+
+.hero-headline {
+	font-size: 6rem;
+	font-weight: normal;
+}
+
+.hero-text {
+	font-weight: normal;
+}
+
+.btn-signup {
+	text-transform: capitalize;
+	font-size: 1.3rem;
+}
+
+.copyrights {
+	font-size: 1rem;
+	font-weight: bolder;
+}
+
+.hero-headline {
+	font-size: 4.5rem;
+}
+
+.hero-text {
+	font-size: 1.5rem;
+}
