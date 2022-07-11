@@ -1,0 +1,131 @@
+.formData {
+  &::after {
+    display: block;
+    margin-top: 10px;
+    margin-bottom: 9px;
+    content: attr(data-error);
+    transition: 0.3s;
+    font-size: 10px;
+    font-family: Roboto, sans-serif;
+    font-weight: 400;
+    text-align: left;
+    opacity: 0;
+    color: #e54858;
+  }
+
+  &[data-error-visible="true"] {
+    &::after {
+      opacity: 1;
+    }
+
+    .text-control {
+      border: 2px solid #e54858;
+    }
+  }
+
+  &[data-valid-visible="true"] {
+    &::after {
+      opacity: 0;
+    }
+
+    .text-control {
+      border: 2px solid #2ecc71;
+    }
+  }
+
+  &__label {
+    display: inline-block;
+    margin-bottom: 11px;
+  }
+
+  .text-control {
+    padding: 8px;
+    border: 0.8px solid #ccc;
+    outline: none;
+    width: 100%;
+    height: 48px;
+    margin: 0;
+    border-radius: 8px;
+  }
+
+}
+
+
+/*
+input[data-error]::after {
+    content: attr(data-error);
+    font-size: 0.4em;
+    color: red;
+} */
+.checkbox-label,
+.checkbox2-label {
+  position: relative;
+  margin-left: 36px;
+}
+
+.checkbox-label .checkbox-icon,
+.checkbox2-label .checkbox-icon {
+  position: absolute;
+  top: -1px;
+  left: -30px;
+  display: block;
+  width: 20px;
+  height: 20px;
+  transition: 0.3s;
+  white-space: nowrap;
+  text-indent: 29px;
+  border: 2px solid #279e7a;
+  border-radius: 50%;
+}
+
+.checkbox-label .checkbox-icon::after,
+.checkbox2-label .checkbox-icon::after {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 13px;
+  height: 13px;
+  content: "";
+  transition: 0.3s;
+  transform: translate(-50%, -50%);
+  white-space: nowrap;
+  text-indent: 29px;
+  opacity: 0;
+  border-radius: 50%;
+  background-color: #279e7a;
+}
+
+.checkbox-input {
+  display: none;
+}
+
+.checkbox-input:checked + .checkbox-label .checkbox-icon::after,
+.checkbox-input:checked + .checkbox2-label .checkbox-icon::after {
+  opacity: 1;
+}
+
+.checkbox-input:checked + .checkbox2-label .checkbox-icon {
+  background: #279e7a;
+}
+
+.checkbox2-label .checkbox-icon {
+  border: 0;
+  border-radius: 4px;
+  background: #c4c4c4;
+}
+
+.checkbox2-label .checkbox-icon::after {
+  top: 19%;
+  left: 21%;
+  width: 7px;
+  height: 4px;
+  transform: rotate(-55deg);
+  border: 2px solid transparent;
+  border-bottom-color: #fff;
+  border-left-color: #fff;
+  border-radius: 2px;
+  background: transparent;
+}
+
+
+

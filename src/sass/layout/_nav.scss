@@ -31,9 +31,11 @@
 	background-color: #ff0000;
 	color: #ffffff;
 	border-radius: 15px;
+	text-decoration: underline;
+	text-underline-offset: 6px;
 }
 
-.topnav .icon {
+.topnav .openNav {
 	display: none;
 }
 
@@ -42,7 +44,7 @@
 		display: none;
 	}
 
-	.topnav a.icon {
+	.topnav a.openNav {
 		float: right;
 		display: block;
 	}
@@ -53,7 +55,7 @@
 		position: relative;
 	}
 
-	.topnav.responsive .icon {
+	.topnav.responsive .openNav {
 		position: absolute;
 		right: 0;
 		top: 0;
@@ -71,7 +73,7 @@
 		display: none;
 	}
 
-	.topnav a.icon {
+	.topnav a.openNav {
 		float: right;
 		display: block;
 		margin-top: -15px;

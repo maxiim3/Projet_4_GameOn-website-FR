@@ -4,32 +4,47 @@
 <head>
    <meta charset='utf-8' />
    <title>Reservation</title>
-   <meta name='viewport' content='width=device-width,initial-scale=1' />
+   <meta
+      name='viewport'
+      content='width=device-width,initial-scale=1' />
    <!--CSS-->
-   <link rel='stylesheet' href='src/sass/main.css'>
+   <link
+      rel='stylesheet'
+      href='./src/sass/main.css' />
    <!--Font Awesomne CDN-->
-   <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'>
+   <link
+      rel='stylesheet'
+      href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css' />
    <!--Google Fonts-->
    <link
       href='https://fonts.googleapis.com/css?family=DM+Sans'
-      rel='stylesheet'
-   />
+      rel='stylesheet' />
 </head>
 <!--endregion-->
 <!--  region Body HTML-->
 <body>
 <!--  region Header-->
-<header class='topnav' id='myTopnav'>
+<header
+   class='topnav'
+   id='myTopnav'>
    <div class='header-logo'>
-      <img alt='logo' src='public/assets/img/Logo.png' />
+      <img
+         alt='logo'
+         src='./public/assets/img/Logo.png' />
    </div>
    <nav class='main-navbar'>
-      <a href='#' class='active'><span>Accueil</span></a>
-      <a href='#'><span>Détails de l'évènement</span></a>
+      <a
+         href='#'
+         class='active'
+      ><span>Détails de l'évènement</span></a
+      >
       <a href='#'><span>À propos</span></a>
       <a href='#'><span>Contact</span></a>
       <a href='#'><span>Évènements passés</span></a>
-      <a href='javascript:void(0);' class='icon' onclick='editNav()'>
+      <a
+         href='#'
+         class='openNav'
+         id='burgerMenu'>
          <i class='fa fa-bars'></i>
       </a>
    </nav>
@@ -40,118 +55,130 @@
    <!--   region Hero-Section-->
    <div class='hero-section'>
       <div class='hero-content'>
-         <h1 class='hero-headline'>
-            Marathon national
-            de jeux vidéos
-         </h1>
+         <h1 class='hero-headline'>Marathon national de jeux vidéos</h1>
          <p class='hero-text'>
-            Vous aimez jouer ? Notre prochain évènement gaming est ouvert
-            aux réservations... Places limitées !
+            Vous aimez jouer ? Notre prochain évènement gaming est ouvert aux réservations...
+            Places limitées !
          </p>
          <!--         Todo Sortir le bouton de la div et jouer sur FLEX Order ce bouton est actif en desktop-->
-         <button class='button open-modal'>
-            Je M'inscris
-         </button>
+         <button class='button open-modal'>Je M'inscris</button>
       </div>
       <div class='hero-img'>
-         <img src='public/assets/img/bg_img.jpg' alt='img' />
+         <img
+            src='./public/assets/img/bg_img.jpg'
+            alt='img' />
       </div>
       <!--         Todo jouer sur FLEX Order, Ce bouton est actif en mobile-->
-      <button class='button open-modal'>
-         Je M'inscris
-      </button>
+      <button class='button open-modal'>Je M'inscris</button>
    </div>
    <!--endregion-->
    <!--   region Modal Section-->
-   <dialog class='modal' id='modal'>
+   <dialog
+      class='modal'
+      id='modal'>
       <span class='modal__btn-close close-modal'></span>
       <div class='modal__body'>
          <!-- todo enlever le JS-->
          <!--region Formulaire-->
-         <!--         <form-->
-         <!--            name='reserve'-->
-         <!--            action='index.html'-->
-         <!--            method='post'-->
-         <!--         >         -->
-         <form name='reserve' id='form' class='form' action='/' method='post'>
+         <form
+            name='reserve'
+            id='form'
+            class='form'
+            action='/api/form.json'
+            method='post'
+         >
             <!--region Form Datas-->
             <!--region Prenom-->
-            <div
-               class='formData'>
-               <label class='formData__label' for='first'>Prénom</label>
+            <div class='formData'>
+               <label
+                  class='formData__label'
+                  for='first'
+               >Prénom</label
+               >
                <input
                   class='text-control'
                   type='text'
                   id='first'
                   name='first'
-                  minlength='2'
-
                />
             </div>
             <!--endregion-->
             <!--region Nom-->
-            <div
-               class='formData'>
-               <label class='formData__label' for='last'>Nom</label>
+            <div class='formData'>
+               <label
+                  class='formData__label'
+                  for='last'
+               >Nom</label
+               >
                <input
                   class='text-control'
                   type='text'
                   id='last'
                   name='last'
-                  minlength='2'
-
                />
             </div>
             <!--endregion-->
             <!--region Email-->
-            <div
-               class='formData'>
-               <label class='formData__label' for='email'>E-mail</label>
+            <div class='formData'>
+               <label
+                  class='formData__label'
+                  for='email'
+               >E-mail</label
+               >
                <input
                   class='text-control'
                   type='email'
                   id='email'
-                  name='email'
-
-               />
+                  name='email' />
             </div>
             <!--endregion-->
             <!--region Date de naissance-->
-            <div
-               class='formData'>
-               <label class='formData__label' for='birthdate'>Date de naissance</label>
+            <div class='formData'>
+               <label
+                  class='formData__label'
+                  for='birthdate'
+               >Date de naissance</label
+               >
                <input
                   class='text-control'
                   type='date'
                   id='birthdate'
-                  name='birthdate'
-
-               />
+                  name='birthdate' />
             </div>
             <!--endregion-->
             <!--region Nombre de Tournois-->
-            <div
-               class='formData'>
-               <label class='formData__label' for='quantity'>À combien de tournois GameOn avez-vous déjà participé ?</label>
-               <input type='number' class='text-control' id='quantity' name='quantity'
-                      min='0' max='99' value='19' >
+            <div class='formData'>
+               <label
+                  class='formData__label'
+                  for='quantity'
+               >À combien de tournois GameOn avez-vous déjà participé ?</label
+               >
+               <input
+                  type='number'
+                  class='text-control'
+                  id='quantity'
+                  name='quantity'
+                  min='0'
+                  max='99'
+               />
             </div>
             <!--endregion-->
             <!--region Nom des Tournois-->
-            <p class='formData__label'>A quel tournoi souhaitez-vous participer cette année ?</p>
-            <div
-               class='formData'>
+            <p class='formData__label'>
+               A quel tournoi souhaitez-vous participer cette année ?
+            </p>
+            <div class='formData' id='radio'>
                <input
                   class='checkbox-input'
                   type='radio'
                   id='location1'
                   name='location'
                   value='New York'
-                  checked
                />
-               <label class='checkbox-label' for='location1'>
-                  <span class='checkbox-icon'>
-                  </span>
+               <label
+                  class='checkbox-label'
+                  for='location1'>
+                  <span class='checkbox-icon'> </span>
                   New York
                </label>
                <input
@@ -159,9 +186,10 @@
                   type='radio'
                   id='location2'
                   name='location'
-                  value='San Francisco'
-               />
-               <label class='checkbox-label' for='location2'>
+                  value='San Francisco' />
+               <label
+                  class='checkbox-label'
+                  for='location2'>
                   <span class='checkbox-icon'></span>
                   San Francisco</label
                >
@@ -170,9 +198,10 @@
                   type='radio'
                   id='location3'
                   name='location'
-                  value='Seattle'
-               />
-               <label class='checkbox-label' for='location3'>
+                  value='Seattle' />
+               <label
+                  class='checkbox-label'
+                  for='location3'>
                   <span class='checkbox-icon'></span>
                   Seattle</label
                >
@@ -181,9 +210,10 @@
                   type='radio'
                   id='location4'
                   name='location'
-                  value='Chicago'
-               />
-               <label class='checkbox-label' for='location4'>
+                  value='Chicago' />
+               <label
+                  class='checkbox-label'
+                  for='location4'>
                   <span class='checkbox-icon'></span>
                   Chicago</label
                >
@@ -192,9 +222,10 @@
                   type='radio'
                   id='location5'
                   name='location'
-                  value='Boston'
-               />
-               <label class='checkbox-label' for='location5'>
+                  value='Boston' />
+               <label
+                  class='checkbox-label'
+                  for='location5'>
                   <span class='checkbox-icon'></span>
                   Boston</label
                >
@@ -203,9 +234,10 @@
                   type='radio'
                   id='location6'
                   name='location'
-                  value='Portland'
-               />
-               <label class='checkbox-label' for='location6'>
+                  value='Portland' />
+               <label
+                  class='checkbox-label'
+                  for='location6'>
                   <span class='checkbox-icon'></span>
                   Portland</label
                >
@@ -213,37 +245,48 @@
             <!-- endregion-->
             <!--endregion-->
             <!--region CGV-->
-            <div
-               class='formData'>
+            <div class='formData' id='CGU'>
                <input
                   class='checkbox-input'
                   type='checkbox'
                   id='checkbox1'
                   name='checkbox1'
-                  checked
-
                />
-               <label class='checkbox2-label' for='checkbox1'>
+               <label
+                  class='checkbox2-label'
+                  for='checkbox1'>
                   <span class='checkbox-icon'></span>
                   J'ai lu et accepté les conditions d'utilisation.
                </label>
-
-               <input class='checkbox-input' type='checkbox' name='checkbox2' id='checkbox2' />
-               <label class='checkbox2-label' for='checkbox2'>
+            </div>
+            <div class='formData'>
+               <input
+                  class='checkbox-input'
+                  type='checkbox'
+                  name='checkbox2'
+                  id='checkbox2' />
+               <label
+                  class='checkbox2-label'
+                  for='checkbox2'>
                   <span class='checkbox-icon'></span>
                   Je Je souhaite être prévenu des prochains évènements.
                </label>
-
             </div>
             <!--endregion-->
             <!--region Submit BTN-->
-            <button class='btn-submit button'
-                    value="C'est parti"
-            >
+            <button
+               class='btn-submit button'
+               value="C'est parti">
                C'est Parti
             </button>
             <!--endregion-->
          </form>
+         <!--endregion-->
+         <!--region Feedback Message-->
+         <div class='feedback' id='feedback'>
+            <p>Merci pour votre inscription</p>
+            <button id='close-modal' class='button close-modal'>Fermer</button>
+         </div>
          <!--endregion-->
       </div>
    </dialog>
@@ -252,13 +295,12 @@
 <!--    endregion-->
 <!--    region Footer-->
 <footer>
-   <p class='copyrights'>
-      Copyright 2014 - 2022, GameOn Inc.
-   </p>
+   <p class='copyrights'>Copyright 2014 - 2022, GameOn Inc.</p>
 </footer>
 <!--    endregion-->
 <!--region JavaScript -->
-<script src='src/js/index.js'></script>
+<!--<script src='../src/js/index.js'></script>-->
+<script src='./dist/main.js'></script>
 <!--  endregion -->
 </body>
 <!--  endregion-->

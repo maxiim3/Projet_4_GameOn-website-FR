@@ -1,14 +1,23 @@
-//region initial DOM Element
-// const modalBg = document.querySelector('.bground');
-// const modalBtn = document.querySelectorAll('.modal-btn');
-// const formData = document.querySelectorAll('.formData');
-//endregion
-//region Initial Code
-// launch modal event
-// modalBtn.forEach(btn => btn.addEventListener('click', launchModal));
+export const style = {
+   fontSize: i => `font-size: ${i}px`,
+   valid: 'color: green;',
+   error: 'color: red;',
+   errorAccent: 'color: red; text-decoration: underline;',
+};
 
-// launch modal form
-// function launchModal() {
-//    modalBg.style.display = 'block';
-// }
-//endregion
+export const modal = document.querySelector('.modal');
+export const openModal = [...document.getElementsByClassName('open-modal')];
+export const closeModal = [...document.getElementsByClassName('close-modal')];
+
+openModal.forEach(e =>
+   e.addEventListener('click', () => {
+      modal.showModal();
+      console.log('Open Modal');
+   })
+);
+closeModal.forEach(e =>
+   e.addEventListener('click', () => {
+      modal.close();
+      console.log('close Modal');
+   })
+);

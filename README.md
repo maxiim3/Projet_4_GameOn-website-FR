@@ -14,24 +14,24 @@
 ### B. Implementer les entrees du formulaire
 - [x] **(1)** Lier les labels aux entrées dans le HTML en utilisant les attributs "for" et "id" dans le code existant. Corriger le code HTML quand nécessaire.
 - [ ] **(2)** Utiliser du JavaScript pur (pas de jQuery) pour terminer le formulaire :
-    - [ ] Le formulaire doit être valide quand l'utilisateur clique sur "Submit"
-    - [ ] Les données doivent être saisies correctement :
+    - [x] Le formulaire doit être valide quand l'utilisateur clique sur "Submit"
+    - [x] Les données doivent être saisies correctement :
         - [x] **(1)** Le champ Prénom a un minimum de 2 caractères / n'est pas vide.
         - [x] **(2)** Le champ du nom de famille a un minimum de 2 caractères / n'est pas vide.
         - [x] **(3)** L'adresse électronique est valide.
         - [x] **(4)** Pour le nombre de concours, une valeur numérique est saisie.
         - [x] **(5)** Un bouton radio est sélectionné.
         - [x] **(6)** La case des conditions générales est cochée, l'autre case est facultative / peut être laissée décochée.
-    - [ ] Conserver les données du formulaire (ne pas effacer le formulaire) lorsqu'il ne passe pas la validation.
+    - [x] Conserver les données du formulaire (ne pas effacer le formulaire) lorsqu'il ne passe pas la validation.
 
 ### C. Ajouter la validation ou message d’erreur
-- [ ] Des messages d'erreur spécifiques doivent apparaître sous l'entrée qui n'est pas correcte.
-- [ ] Les messages d'erreur doivent s'afficher sous le champ de saisie associé.
+- [x] Des messages d'erreur spécifiques doivent apparaître sous l'entrée qui n'est pas correcte.
+- [x] Les messages d'erreur doivent s'afficher sous le champ de saisie associé.
   Exemples :
-    - [ ] "Veuillez entrer 2 caractères ou plus pour le champ du nom."
-    - [ ] "Vous devez choisir une option."
-    - [ ] "Vous devez vérifier que vous acceptez les termes et conditions."
-    - [ ] "Vous devez entrer votre date de naissance."
+    - [x] "Veuillez entrer 2 caractères ou plus pour le champ du nom."
+    - [x] "Vous devez choisir une option."
+    - [x] "Vous devez vérifier que vous acceptez les termes et conditions."
+    - [x] "Vous devez entrer votre date de naissance."
 
 
 ### D. Ajouter confirmation quand envoie réussi
