@@ -1,20 +1,4 @@
-//region 1.NAV SECTION
-/**
- * # function editNav()
- * Ajoute la classe 'responsive' en breakpoint mobile
- * Permet d'ouvrir le menu Nav
- */
-function editNav() {
-   const x = document.getElementById('myTopnav');
-   if (x.className === 'topnav') {
-      x.className += ' responsive';
-   } else {
-      x.className = 'topnav';
-   }
-   console.log('Click on TOPNAV');
-}
-
-//endregion
+import { editNav } from './nav.js';
 
 //region 2.MODAL SECTION
 /**
@@ -65,7 +49,7 @@ const usrTextControl = [...document.getElementsByClassName('text-control')];
 const checkboxCGU = document.getElementById('checkbox1');
 //endregion
 //endregion
-
+modal.showModal();
 //region EVENT LISTENER
 //region Listen Modal Open/Close
 openModal.forEach(e =>

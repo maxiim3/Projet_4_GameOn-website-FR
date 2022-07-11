@@ -6,7 +6,7 @@
    <title>Reservation</title>
    <meta name='viewport' content='width=device-width,initial-scale=1' />
    <!--CSS-->
-   <link rel='stylesheet' href='src/css/main.css'>
+   <link rel='stylesheet' href='src/sass/main.css'>
    <!--Font Awesomne CDN-->
    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'>
    <!--Google Fonts-->
@@ -73,72 +73,72 @@
          <!--            action='index.html'-->
          <!--            method='post'-->
          <!--         >         -->
-         <form name='reserve'>
+         <form name='reserve' id='form' class='form' action='/' method='post'>
             <!--region Form Datas-->
             <!--region Prenom-->
             <div
                class='formData'>
-               <label for='first'>Prénom</label>
+               <label class='formData__label' for='first'>Prénom</label>
                <input
                   class='text-control'
                   type='text'
                   id='first'
                   name='first'
                   minlength='2'
-                  required
+
                />
             </div>
             <!--endregion-->
             <!--region Nom-->
             <div
                class='formData'>
-               <label for='last'>Nom</label>
+               <label class='formData__label' for='last'>Nom</label>
                <input
                   class='text-control'
                   type='text'
                   id='last'
                   name='last'
                   minlength='2'
-                  required
+
                />
             </div>
             <!--endregion-->
             <!--region Email-->
             <div
                class='formData'>
-               <label for='email'>E-mail</label>
+               <label class='formData__label' for='email'>E-mail</label>
                <input
                   class='text-control'
                   type='email'
                   id='email'
                   name='email'
-                  required
+
                />
             </div>
             <!--endregion-->
             <!--region Date de naissance-->
             <div
                class='formData'>
-               <label for='birthdate'>Date de naissance</label>
+               <label class='formData__label' for='birthdate'>Date de naissance</label>
                <input
                   class='text-control'
                   type='date'
                   id='birthdate'
                   name='birthdate'
-                  required
+
                />
             </div>
             <!--endregion-->
             <!--region Nombre de Tournois-->
             <div
                class='formData'>
-               <label for='quantity'>À combien de tournois GameOn avez-vous déjà participé ?</label>
+               <label class='formData__label' for='quantity'>À combien de tournois GameOn avez-vous déjà participé ?</label>
                <input type='number' class='text-control' id='quantity' name='quantity'
-                      min='0' max='99' value='19' required>
+                      min='0' max='99' value='19' >
             </div>
             <!--endregion-->
             <!--region Nom des Tournois-->
-            <p class='text-label'>A quel tournoi souhaitez-vous participer cette année ?</p>
+            <p class='formData__label'>A quel tournoi souhaitez-vous participer cette année ?</p>
             <div
                class='formData'>
                <input
@@ -219,10 +219,11 @@
                   class='checkbox-input'
                   type='checkbox'
                   id='checkbox1'
+                  name='checkbox1'
                   checked
-                  required
+
                />
-               <label class='checkbox2-label' for='checkbox1' name='checkbox1' required>
+               <label class='checkbox2-label' for='checkbox1'>
                   <span class='checkbox-icon'></span>
                   J'ai lu et accepté les conditions d'utilisation.
                </label>

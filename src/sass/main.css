@@ -1,0 +1,662 @@
+@import 'base/normalize.css';
+:root {
+  --font-default: "DM Sans", Arial, Helvetica, sans-serif;
+  --font-slab: var(--font-default);
+  --modal-duration: 0.8s;
+}
+
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: normal;
+  overflow-x: clip;
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  scroll-behavior: smooth;
+}
+
+html,
+body,
+ul,
+li,
+a,
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+div,
+img,
+span,
+form,
+input,
+button,
+header,
+footer,
+main {
+  margin: 0;
+  padding: 0;
+}
+
+/*region Global Links*/
+ul,
+li,
+a {
+  list-style: none;
+  text-decoration: none;
+  color: black;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  box-sizing: border-box;
+  background: #fff;
+}
+
+body {
+  font-family: var(--font-default);
+  font-size: 18px;
+}
+
+main {
+  font-size: 130%;
+  font-weight: bolder;
+}
+
+.topnav a {
+  font-size: 20px;
+  font-family: Roboto, sans-serif;
+}
+
+.modal-btn {
+  font-size: 145%;
+}
+
+.footer {
+  font-family: var(--font-slab);
+}
+
+.button {
+  font-size: 16px;
+}
+
+.smFont {
+  font-size: 16px;
+}
+
+label {
+  font-family: var(--font-default);
+  font-size: 17px;
+  font-weight: normal;
+}
+
+.text-control {
+  font-size: 20px;
+}
+
+.formData[data-error]::after {
+  font-size: 0.4em;
+  line-height: 0.3;
+}
+
+.checkbox-label,
+.checkbox2-label {
+  font-size: 12px;
+  font-weight: normal;
+}
+
+.custom-select {
+  font-family: Arial, sans-serif;
+  font-size: 1.1rem;
+  font-weight: normal;
+}
+
+.btn-submit,
+.btn-signup {
+  font-size: 1rem;
+}
+
+.formData__label {
+  font-weight: 400;
+  font-size: 14px;
+  text-align: justify;
+}
+
+.hero-headline {
+  font-size: 6rem;
+  font-weight: normal;
+}
+
+.hero-text {
+  font-weight: normal;
+}
+
+.btn-signup {
+  text-transform: capitalize;
+  font-size: 1.3rem;
+}
+
+.copyrights {
+  font-size: 1rem;
+  font-weight: bolder;
+}
+
+.hero-headline {
+  font-size: 4.5rem;
+}
+
+.hero-text {
+  font-size: 1.5rem;
+}
+
+.button {
+  background: #fe142f;
+  margin-top: 0.5em;
+  padding: 1em;
+  color: #fff;
+  border-radius: 15px;
+  cursor: pointer;
+}
+.button:hover {
+  background: #3876ac;
+}
+
+.open-modal {
+  background: #fe142f;
+  display: flex;
+  margin: auto;
+  color: #fff;
+  padding: 0.75rem 2.5rem;
+  border-radius: 1rem;
+  cursor: pointer;
+}
+.open-modal:hover {
+  background: #3876ac;
+}
+
+.btn-submit,
+.open-modal {
+  background: #fe142f;
+  display: block;
+  margin: 0 auto;
+  border-radius: 7px;
+  padding: 12px 82px;
+  color: #fff;
+  cursor: pointer;
+  border: 0;
+}
+
+.open-modal {
+  outline: none;
+  padding: 15px 23px;
+  margin-top: 59px;
+}
+
+.hero-section > .open-modal {
+  display: none;
+}
+
+@media screen and (max-width: 800px) {
+  .hero-content .open-modal {
+    display: none;
+  }
+  .hero-section > .open-modal {
+    display: block;
+    margin: 32px auto 10px;
+    padding: 12px 35px;
+  }
+}
+.footer {
+  margin-inline: 20px;
+  padding-block: 10px;
+  padding-inline: 2vw;
+}
+
+.copyrights {
+  color: #fe142f;
+  padding: 0;
+  margin: 60px 0 30px;
+}
+@media screen and (max-width: 800px) {
+  .copyrights {
+    margin-top: 50px;
+    text-align: center;
+  }
+}
+
+/* Modal form */
+.modal {
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+  max-width: 500px;
+  margin: 5% auto;
+  padding-top: 10px;
+  animation-name: modalopen;
+  animation-duration: var(--modal-duration);
+  color: #fff;
+  border-radius: 10px;
+  background: #232323;
+  border: none;
+  box-shadow: 0 15px 10px rgba(0, 0, 0, 0.2);
+}
+.modal::backdrop {
+  background-color: white;
+}
+.modal__btn-close {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+  transform: scale(0.7);
+  opacity: 1;
+}
+.modal__btn-close::before, .modal__btn-close::after {
+  position: absolute;
+  left: 15px;
+  width: 3px;
+  height: 33px;
+  content: " ";
+  background-color: #fff;
+}
+.modal__btn-close::before {
+  transform: rotate(45deg);
+}
+.modal__btn-close::after {
+  transform: rotate(-45deg);
+}
+.modal__body {
+  margin: 15px auto;
+  padding: 15px 8%;
+}
+
+.formData__label {
+  display: inline-block;
+  margin-bottom: 11px;
+}
+.formData .text-control {
+  padding: 8px;
+  border: 0.8px solid #ccc;
+  outline: none;
+}
+
+.text-control {
+  width: 100%;
+  height: 48px;
+  margin: 0;
+  padding: 8px;
+  border-radius: 8px;
+}
+
+.formData[data-error]::after {
+  display: block;
+  margin-top: 7px;
+  margin-bottom: 7px;
+  content: attr(data-error);
+  transition: 0.3s;
+  text-align: right;
+  opacity: 0;
+  color: #e54858;
+}
+
+.formData[data-error-visible=true]::after {
+  opacity: 1;
+}
+
+.formData[data-error-visible=true] .text-control {
+  border: 2px solid #e54858;
+}
+
+/*
+input[data-error]::after {
+    content: attr(data-error);
+    font-size: 0.4em;
+    color: red;
+} */
+.checkbox-label,
+.checkbox2-label {
+  position: relative;
+  margin-left: 36px;
+}
+
+.checkbox-label .checkbox-icon,
+.checkbox2-label .checkbox-icon {
+  position: absolute;
+  top: -1px;
+  left: -30px;
+  display: block;
+  width: 20px;
+  height: 20px;
+  transition: 0.3s;
+  white-space: nowrap;
+  text-indent: 29px;
+  border: 2px solid #279e7a;
+  border-radius: 50%;
+}
+
+.checkbox-label .checkbox-icon::after,
+.checkbox2-label .checkbox-icon::after {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 13px;
+  height: 13px;
+  content: "";
+  transition: 0.3s;
+  transform: translate(-50%, -50%);
+  white-space: nowrap;
+  text-indent: 29px;
+  opacity: 0;
+  border-radius: 50%;
+  background-color: #279e7a;
+}
+
+.checkbox-input {
+  display: none;
+}
+
+.checkbox-input:checked + .checkbox-label .checkbox-icon::after,
+.checkbox-input:checked + .checkbox2-label .checkbox-icon::after {
+  opacity: 1;
+}
+
+.checkbox-input:checked + .checkbox2-label .checkbox-icon {
+  background: #279e7a;
+}
+
+.checkbox2-label .checkbox-icon {
+  border: 0;
+  border-radius: 4px;
+  background: #c4c4c4;
+}
+
+.checkbox2-label .checkbox-icon::after {
+  top: 19%;
+  left: 21%;
+  width: 7px;
+  height: 4px;
+  transform: rotate(-55deg);
+  border: 2px solid transparent;
+  border-bottom-color: #fff;
+  border-left-color: #fff;
+  border-radius: 2px;
+  background: transparent;
+}
+
+/* custom select css */
+.custom-select {
+  position: relative;
+}
+
+.custom-select select {
+  display: none;
+}
+
+.select-selected {
+  background-color: #fff;
+}
+
+/* Style the arrow inside the select element: */
+.select-selected:after {
+  position: absolute;
+  top: 10px;
+  right: 13px;
+  width: 11px;
+  height: 11px;
+  content: "";
+  transform: rotate(-48deg);
+  border: 3px solid transparent;
+  border-bottom-color: #f00;
+  border-left-color: #f00;
+  border-radius: 5px 0 5px 0;
+}
+
+/* Point the arrow upwards when the select box is open (active): */
+.select-selected.select-arrow-active:after {
+  top: 13px;
+  transform: rotate(135deg);
+}
+
+.select-items div,
+.select-selected {
+  height: 48px;
+  padding: 11px 16px;
+  cursor: pointer;
+  color: #000;
+  border: 1px solid transparent;
+  border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
+  border-radius: 8px;
+}
+
+/* Style items (options): */
+.select-items {
+  position: absolute;
+  z-index: 99;
+  top: 89%;
+  right: 0;
+  left: 0;
+  background-color: #fff;
+}
+
+/* Hide the items when the select box is closed: */
+.select-hide {
+  display: none;
+}
+
+.select-items div:hover,
+.same-as-selected {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+/* custom select end */
+@keyframes modalopen {
+  from {
+    opacity: 0;
+    transform: translateY(-150px);
+  }
+  to {
+    opacity: 1;
+  }
+}
+.topnav {
+  /*overflow: hidden;*/
+  margin: 3.5%;
+}
+
+.header-logo {
+  float: left;
+}
+
+.main-navbar {
+  float: right;
+}
+
+.topnav a {
+  float: left;
+  display: block;
+  color: #000000;
+  text-align: center;
+  text-decoration: none;
+  padding: 12px 12px;
+  margin: 5px;
+}
+
+.topnav a:hover {
+  background-color: #ff0000;
+  color: #ffffff;
+  border-radius: 15px;
+}
+
+.topnav a.active {
+  background-color: #ff0000;
+  color: #ffffff;
+  border-radius: 15px;
+}
+
+.topnav .icon {
+  display: none;
+}
+
+@media screen and (max-width: 768px) {
+  .topnav a {
+    display: none;
+  }
+  .topnav a.icon {
+    float: right;
+    display: block;
+  }
+}
+@media screen and (max-width: 768px) {
+  .topnav.responsive {
+    position: relative;
+  }
+  .topnav.responsive .icon {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+  .topnav.responsive a {
+    float: none;
+    display: block;
+    text-align: left;
+  }
+}
+@media screen and (max-width: 540px) {
+  .topnav a {
+    display: none;
+  }
+  .topnav a.icon {
+    float: right;
+    display: block;
+    margin-top: -15px;
+  }
+}
+/* Landing Page */
+body {
+  display: flex;
+  flex-direction: column;
+  max-width: 1300px;
+  margin: 0 auto;
+}
+
+p {
+  margin-bottom: 0;
+  padding: 0.5vw;
+}
+
+img {
+  padding-right: 1rem;
+}
+
+main {
+  color: black;
+  padding-top: 0.5vw;
+  padding-left: 2vw;
+  padding-right: 2vw;
+  margin: 1px 20px 15px;
+  border-radius: 2rem;
+  text-align: justify;
+}
+
+.hero-section {
+  /*min-height: 93vh;*/
+  border-radius: 10px;
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  overflow: hidden;
+  box-shadow: 0 2px 7px 2px rgba(0, 0, 0, 0.2);
+  margin-bottom: 10px;
+}
+
+.hero-content {
+  padding: 51px 67px;
+  grid-column: span 4;
+  background: #232323;
+  color: #fff;
+  position: relative;
+  text-align: left;
+  min-width: 424px;
+}
+
+.hero-content::after {
+  content: "";
+  width: 100%;
+  height: 100%;
+  background: #232323;
+  position: absolute;
+  right: -80px;
+  top: 0;
+}
+
+.hero-content > * {
+  position: relative;
+  z-index: 1;
+}
+
+.hero-headline {
+  white-space: nowrap;
+}
+
+.hero-text {
+  width: 146%;
+  margin-top: 57px;
+  padding: 0;
+}
+
+.hero-img {
+  grid-column: span 8;
+  overflow: hidden;
+}
+
+.hero-img img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  padding: 0;
+  object-fit: cover;
+}
+
+@media screen and (max-width: 800px) {
+  .hero-section {
+    display: block;
+    box-shadow: unset;
+  }
+  .hero-content {
+    background: #fff;
+    color: #000;
+    padding: 20px;
+  }
+  .hero-content::after {
+    content: unset;
+  }
+  .hero-headline {
+    white-space: normal;
+  }
+  .hero-text {
+    width: unset;
+  }
+  .hero-img img {
+    border-radius: 10px;
+    margin-top: 40px;
+  }
+}
+
+/*# sourceMappingURL=main.css.map */
