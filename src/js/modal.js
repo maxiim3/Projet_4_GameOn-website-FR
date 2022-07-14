@@ -12,12 +12,10 @@ export const closeModal = [...document.getElementsByClassName('close-modal')];
 openModal.forEach(e =>
    e.addEventListener('click', () => {
       modal.showModal();
-      console.log('Open Modal');
    })
 );
 closeModal.forEach(e =>
    e.addEventListener('click', () => {
       modal.close();
-      console.log('close Modal');
    })
 );

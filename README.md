@@ -36,7 +36,7 @@
 
 ### D. Ajouter confirmation quand envoie réussi
 Après une validation réussie,
-- [ ] inclure un message de confirmation de la soumission réussie pour l'utilisateur
+- [x] inclure un message de confirmation de la soumission réussie pour l'utilisateur
   (ex. "Merci ! Votre réservation a été reçue.")
 
 ### E. Tests manuels

@@ -7,10 +7,10 @@
 
 export function editNav() {
    const topNav = document.getElementById('myTopnav');
-   if (topNav.className === 'topnav') {
-      topNav.className += ' responsive';
+   if (topNav.dataset.responsive === 'false' || !topNav.dataset.responsive) {
+      topNav.dataset.responsive = 'true';
    } else {
-      topNav.className = 'topnav';
+      topNav.dataset.responsive = 'false';
    }
 }
 

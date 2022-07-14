@@ -1,97 +1,137 @@
-body {
-	font-family: var(--font-default);
-	font-size: 18px;
+
+html {
+  // 10px div by def of 16px
+  font-size: 62.5%;
+  font-family: $font-main;
 }
 
-main {
-	font-size: 130%;
-	font-weight: bolder;
+//region colors
+* {
+  color: $clr-dark;
 }
 
-.topnav {
-	a {
-		font-size: 20px;
-		font-family: Roboto, sans-serif;
-	}
+i.fa-bars,
+.copyrights {
+  color: $clr-primary;
 }
 
-.modal-btn {
-	font-size: 145%;
+label,
+.button,
+.btn-signup,
+.btn-submit {
+  color: $clr-light;
 }
 
-.footer {
-	font-family: var(--font-slab);
+//endregion
+
+// region font families
+a,
+p,
+li,
+body,
+label,
+button,
+.hero-content__text,
+.hero-content__headline,
+.formData__label,
+.navbar__link,
+.formData[data-error]::after {
+  font-family: $font-main;
 }
 
-.button {
-	font-size: 16px;
+.footer,
+.copyrights,
+.text-control,
+.checkbox-label,
+.checkbox2-label {
+  font-family: $font-alt;
 }
 
-.smFont {
-	font-size: 16px;
+// endregion
+
+//region font sizes
+.footer,
+.copyrights,
+.formData[data-error]::after {
+  @include font-size($font-size-xs);
 }
 
-label {
-	font-family: var(--font-default);
-	font-size: 17px;
-	font-weight: normal;
+.button,
+.navbar__link,
+.checkbox-label,
+.checkbox2-label,
+.hero-content__text {
+  @include font-size($font-size-s);
+}
+
+label,
+i.fa-bars,
+.btn-submit,
+.btn-signup,
+.formData__label {
+  @include font-size($font-size-m);
 }
 
 .text-control {
-	font-size: 20px;
+  @include font-size($font-size-l);
+
 }
+
+h1,
+.hero-content__headline {
+  @include font-size($font-size-xl);
+}
+
+// endregion
+
+// region font weight
+button,
+.btn-submit,
+.btn-signup,
+.navbar__link,
+.hero-content__headline {
+  font-weight: $font-bold;
+}
+
+label,
+.text-control,
+.checkbox-label,
+.checkbox2-label,
+.hero-content__text,
+.formData[data-error]::after {
+  font-weight: $font-light;
+}
+
+//endregion
+
+// Todo Je ne sais pas a quoi ca correspond
+//.smFont {
+//	font-size: 16px;
+//}
+//.custom-select {
+//  font-family: Arial, sans-serif;
+//  font-size: 1.1rem;
+//  font-weight: normal;
+//}
 
 .formData[data-error]::after {
-	font-size: 0.4em;
-	line-height: 0.3;
+  line-height: 0.3;
 }
 
-.checkbox-label,
-.checkbox2-label {
-	font-size: 12px;
-	font-weight: normal;
-}
-
-.custom-select {
-	font-family: Arial, sans-serif;
-	font-size: 1.1rem;
-	font-weight: normal;
-}
-
-.btn-submit,
-.btn-signup {
-	font-size: 16px;;
+h1 {
+  line-height: 130%;
+  letter-spacing: 0.8px;
 }
 
 .formData__label {
-	font-weight: 400;
-	font-size: 14px;
-	text-align: justify;
+  text-align: justify;
 }
 
-.hero-headline {
-	font-size: 6rem;
-	font-weight: normal;
-}
-
-.hero-text {
-	font-weight: normal;
-}
 
 .btn-signup {
-	text-transform: capitalize;
-	font-size: 1.3rem;
+  text-transform: capitalize;
 }
 
-.copyrights {
-	font-size: 1rem;
-	font-weight: bolder;
-}
-
-.hero-headline {
-	font-size: 4.5rem;
-}
-
-.hero-text {
-	font-size: 1.5rem;
+.navbar__link {
+  letter-spacing: 1.2px;
 }

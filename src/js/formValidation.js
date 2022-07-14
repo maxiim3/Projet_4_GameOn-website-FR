@@ -10,7 +10,7 @@ export const radios = [...document.querySelectorAll('#radio .checkbox-input')];
 export const checkboxCGU = document.querySelector('#CGU #checkbox1');
 export const feedback = document.getElementById('feedback');
 
-export function formValidation() {
+export async function formValidation() {
    const firstnameValue = firstname.value.trim();
    const lastnameValue = lastname.value.trim();
    const emailValue = email.value.trim();
@@ -87,10 +87,19 @@ export function formValidation() {
    if (checkUserInput()) {
       form.dataset.formValid = true;
       feedback.dataset.formValid = true;
-      postData();
+      return {
+         firstname: firstnameValue,
+         lastname: lastnameValue,
+         email: emailValue,
+         birthdateStrict: birthdateStrictValue,
+         birthdateDate: birthdateDateValue,
+         birthday: birthdayYear,
+         quantity: quantityValue,
+      };
    } else {
       form.dataset.formValid = false;
       feedback.dataset.formValid = false;
+      console.error('Form is not valid');
    }
 }
 
@@ -125,14 +134,3 @@ export function isAdult(input) {
 
    return input < actualYear - minimumYear;
 }
-
-// function postData() {
-//    fetch("./api/form.json", {
-//       method: “POST”,
-//    headers: {
-//       'Accept': 'application/json',
-//          'Content-Type': 'application/json'
-//    },
-//    body: JSON.stringify(jsonBody)
-// });
-// }
