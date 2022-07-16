@@ -1,8 +1,4 @@
-//:root {
-//	--font-default: "DM Sans", Arial, Helvetica, sans-serif;
-
-//	--modal-duration: 0.8s;
-//}
+$modal-duration: 800ms;
 //region Breakpoints
 $breakpoint-mobile-sm: null;
 $breakpoint-mobile-m: 501px;
@@ -46,7 +42,7 @@ $font-size-xs: (
 );
 // font s
 $font-size-s: (
-        $breakpoint-mobile-sm: 1.2rem,
+        $breakpoint-mobile-sm: 1.3rem,
         $breakpoint-mobile-m: 1.5rem,
         $breakpoint-tablet-sm: 1.6rem,
         $breakpoint-tablet-m: 1.7rem,
@@ -71,7 +67,7 @@ $font-size-l: (
 );
 // font xl
 $font-size-xl: (
-        $breakpoint-mobile-sm: 3.6rem,
+        $breakpoint-mobile-sm: 3.8rem,
         $breakpoint-mobile-m: 5.2rem,
         $breakpoint-tablet-sm: 6.4rem,
         $breakpoint-tablet-m: 8.2rem,

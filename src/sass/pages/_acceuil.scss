@@ -6,7 +6,7 @@ body {
 }
 
 main {
-  width: min(600px, 90vw);
+  width: 100%;
   margin-inline: auto;
 }
 
@@ -25,9 +25,9 @@ main {
     }
 
     &__text {
-      margin-top: 25px;
+      margin-block: 25px 12px;
       line-height: 1.5em;
-      max-width: 45ch;
+      max-width: 37ch;
     }
   }
 
