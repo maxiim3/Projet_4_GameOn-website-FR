@@ -12,7 +12,6 @@ function editNav() {
       topNav.className = 'topnav';
    }
 }
-
 // endregion
 
 // region Modal Control
@@ -28,11 +27,14 @@ closeBtn.forEach(btn => btn.addEventListener('click', closeModal));
 function launchModal() {
    modalBg.style.display = 'block';
 }
-
 // close modal form
 function closeModal() {
    modalBg.style.display = 'none';
 }
+
+(function () {
+   modalBg.style.display = 'block';
+})();
 
 // endregion
 
@@ -85,7 +87,7 @@ function checkUserInput() {
 
    //endregion
 
-   printMsg('Checking Values....', 'tomato');
+   printMsg('Checking Values...', 'limegreen');
 
    let validInputs = 0;
    let requiredValid = 0;
@@ -152,7 +154,7 @@ function checkUserInput() {
  * @param color
  */
 function printMsg(msg, color = 'black') {
-   console.log(`%c... ${msg} ...`, `color: ${color}; font-size: 15px`);
+   console.log(`%c${msg}`, `color: ${color}; font-size: 15px`);
 }
 
 /**
@@ -162,7 +164,7 @@ function printMsg(msg, color = 'black') {
  */
 function isEmpty(input) {
    if (input.value.trim() === '') {
-      setErrorTo(input, `${input.ariaLabel} doit être renseigner`);
+      setErrorTo(input, `${input.ariaLabel || input.title} doit être renseigner`);
       return true;
    }
    return false;

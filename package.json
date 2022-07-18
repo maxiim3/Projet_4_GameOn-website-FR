@@ -5,7 +5,8 @@
   "private": true,
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "sass": "sass ./sass/main.scss:./public/css/style.css -w --style"
+    "sass": "sass ./starterOnly/modal.css:./starterOnly/modal.css -w --style",
+    "watch": "sass --watch ./starterOnly/modal.css ./starterOnly/modal.css "
   },
   "repository": {
     "type": "git",
