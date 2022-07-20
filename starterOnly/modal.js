@@ -1,22 +1,42 @@
-window.addEventListener("resize", () => {
-   let width = window.screen.width;
-
-   const ratio = 0.02;
-   const pixels = 2;
-
-   const pixel = 40;
-
-   let viewWidth = width * ratio + pixels;
-
-   console.log(`${viewWidth}px`);
-});
-
-// region Navigation
+/**
+ * # DOM ELEMETS
+ * @type {HTMLElement}
+ */
+// DOM NavBar
 const iconNavBar = document.getElementById("iconNavBar");
-// open toNav menu
-iconNavBar.addEventListener("click", editNav);
+// DOM Modal
+const modalBg = document.querySelector(".bground");
+const modalBtn = [...document.querySelectorAll(".modal-btn")];
+const closeBtn = [...document.querySelectorAll(".close-modal")];
+const btnSubmit = document.querySelector(".btn-submit");
+// DOM Hero
+const hero = document.querySelector(".hero-section");
+// DOM Footer
+const footer = document.querySelector("footer");
 
-// set topNav classes
+/**
+ * # Event Listener
+ * @type {EventListener}
+ */
+
+(
+   function () {
+      // NavBar Burger Icon
+      iconNavBar.addEventListener("click", editNav);
+      // Open Modal
+      modalBtn.forEach(btn => btn.addEventListener("click", launchModal));
+      // Close Modal
+      closeBtn.forEach(btn => btn.addEventListener("click", closeModal));
+      // Check and Submit Form
+      btnSubmit.addEventListener("click", validate);
+   }
+)();
+
+/**
+ * # Function
+ * ## editNav()
+ * Ajoute ou supprime la classe **'responsive'** qui permet de dérouler le menu en vue mobile
+ */
 function editNav() {
    const topNav = document.getElementById("myTopnav");
    if (topNav.className === "topnav") {
@@ -26,44 +46,35 @@ function editNav() {
    }
 }
 
-// endregion
-
-// region Modal Control
-const modalBg = document.querySelector(".bground");
-const modalBtn = [...document.querySelectorAll(".modal-btn")];
-const closeBtn = [...document.querySelectorAll(".close-modal")];
-const hero = document.querySelector(".hero-section");
-const main = document.querySelector("main");
-const footer = document.querySelector("footer");
-// launch modal e[vent]
-modalBtn.forEach(btn => btn.addEventListener("click", launchModal));
-// close modal event
-closeBtn.forEach(btn => btn.addEventListener("click", closeModal));
-
-// launch modal form
+/**
+ * # Function
+ * ## launchModal()
+ * Affiche la modal en modifiant la valeur de *display*
+ */
 function launchModal() {
    modalBg.style.display = "block";
    hero.style.visibility = "hidden";
    footer.style.visibility = "hidden";
 }
 
-// close modal form
+/**
+ * # Function
+ * ## closeModal()
+ * Ferme la modal en modifiant la valeur de *display*
+ */
 function closeModal() {
    modalBg.style.display = "none";
    hero.style.visibility = "visible";
    footer.style.visibility = "visible";
 }
 
-// endregion
-
-//region Form Validation
-const btnSubmit = document.querySelector(".btn-submit");
-btnSubmit.addEventListener("click", validate);
-
 /**
- * # Validate Form
- * Envoie le formulaire si les saisies utilisateurs sont valides
- * @param e
+ * # Function
+ * ## validate(e)
+ * **Envoie le formulaire** si les saisies utilisateurs sont **valides**
+ *
+ * **Lève une Erreur** sur le formulaire est **invalide**
+ * @param e [click]
  */
 function validate(e) {
    e.preventDefault();
@@ -73,7 +84,7 @@ function validate(e) {
       (function () {
          if (checkUserInput()) {
             modalBg.dataset.formValid = "true";
-            printMsg("Formulaire envoyé avec succès!", "green");
+            printMsg("Formulaire envoyé avec succès!", "green", 21, "font-weight: bold");
          } else {
             modalBg.dataset.formValid = "false";
             throw new Error("Le formulaire ne peut être envoyé car il n'est pas valide");
@@ -85,95 +96,123 @@ function validate(e) {
 }
 
 /**
- * # checkUserInput
- * Vérifie que les saisies utilisateurs sont valides
+ * # Function
+ * ## checkUserInput
+ * Vérifie que les saisies utilisateurs soient valides
  * @returns {boolean}
  */
 function checkUserInput() {
-   //region DOM Form Elements
-   const firstname = document.getElementById("first");
-   const lastname = document.getElementById("last");
-   const email = document.getElementById("email");
-   const birthdate = document.getElementById("birthdate");
-   const quantity = document.getElementById("quantity");
-   const radios = [...document.querySelectorAll("#radios .checkbox-input")];
-   const checkboxCGU = document.querySelector("#checkboxes #checkbox1");
-
-   //endregion
-
-   printMsg("Checking Values...", "limegreen");
-
+   /**
+    * Sera **incrémenter** après chaque **validation valide**
+    * @type {number} || Retourne le **nombre de saisies valides**
+    */
    let validInputs = 0;
+
+   /**
+    * Sera **incrémenter** après chaque **validation**
+    * @type {number} || Retourne le nombre de **saisies totales devant être validés**
+    */
    let requiredValid = 0;
 
-   //region Block de Conditions
-   // validation prenom
-   requiredValid++;
-   if (!isEmpty(firstname)) {
-      if (!minLength(firstname, 2)) {
-         setValidTo(firstname);
-         validInputs++;
-      }
-   }
-   // validation nom
-   requiredValid++;
-   if (!isEmpty(lastname)) {
-      if (!minLength(lastname, 2)) {
-         setValidTo(lastname);
-         validInputs++;
-      }
-   }
-   // validation mail
-   requiredValid++;
-   if (!isEmpty(email)) {
-      if (isEmail(email)) {
-         setValidTo(email);
-         validInputs++;
-      }
-   }
-   // validation date de naissance
-   requiredValid++;
-   if (!isEmpty(birthdate)) {
-      setValidTo(birthdate);
-      validInputs++;
-   }
-   // validation nombre de participation
-   requiredValid++;
-   if (!isEmpty(quantity)) {
-      setValidTo(quantity);
-      validInputs++;
-   }
-   // validation choix de la ville
-   requiredValid++;
-   if (!isSelected(radios)) {
-      setValidTo(radios.at(0));
-      validInputs++;
-   }
-   // validation CGU
-   requiredValid++;
-   if (!isChecked(checkboxCGU)) {
-      setValidTo(checkboxCGU);
-      validInputs++;
-   }
-   //endregion
+   // Retour console
+   printMsg(
+      "Checking Values...",
+      "limegreen",
+      13,
+      "font-weight: bold",
+      "text-decoration: underline"
+   );
 
-   console.log(`validInputs: ${validInputs}`);
-   console.log(`requiredValid: ${requiredValid}`);
+   /**
+    * Lance les vérifications pour chaques saisies obligatoires
+    */
+   (function () {
+      // DOM Form Elements
+      const firstname = document.getElementById("first");
+      const lastname = document.getElementById("last");
+      const email = document.getElementById("email");
+      const birthdate = document.getElementById("birthdate");
+      const quantity = document.getElementById("quantity");
+      const radios = [...document.querySelectorAll("#radios .checkbox-input")];
+      const checkboxCGU = document.querySelector("#checkboxes #checkbox1");
+      requiredValid++;
+      if (!isEmpty(firstname)) {
+         if (!minLength(firstname, 2)) {
+            setValidTo(firstname);
+            validInputs++;
+         }
+      }
+      // validation nom
+      requiredValid++;
+      if (!isEmpty(lastname)) {
+         if (!minLength(lastname, 2)) {
+            setValidTo(lastname);
+            validInputs++;
+         }
+      }
+      // validation mail
+      requiredValid++;
+      if (!isEmpty(email)) {
+         if (isEmail(email)) {
+            setValidTo(email);
+            validInputs++;
+         }
+      }
+      // validation date de naissance
+      requiredValid++;
+      if (!isEmpty(birthdate)) {
+         setValidTo(birthdate);
+         validInputs++;
+      }
+      // validation nombre de participation
+      requiredValid++;
+      if (!isEmpty(quantity)) {
+         setValidTo(quantity);
+         validInputs++;
+      }
+      // validation choix de la ville
+      requiredValid++;
+      if (!isSelected(radios)) {
+         setValidTo(radios.at(0));
+         validInputs++;
+      }
+      // validation CGU
+      requiredValid++;
+      if (!isChecked(checkboxCGU)) {
+         setValidTo(checkboxCGU);
+         validInputs++;
+      }
+   })();
+
+   // Retour Console
+   printMsg(`validInputs: ${validInputs}`, undefined, 11);
+   printMsg(`requiredValid: ${requiredValid}`, undefined, 11);
+
+   // output
    return validInputs === requiredValid;
 }
 
 /**
- * Fonction raccourcie pour afficher un message coloré dans la console
+ * # Fonction
+ * ## printMsg()
+ * Fonction raccourcie pour affecter des styles aux messages de retour console
  * @param msg
- * @param color
+ * @param color | Par défaut 'black'
+ * @param fontSize | Par défaut '15'
+ * @param styles | Styles Optionnels...
  */
-function printMsg(msg, color = "black") {
-   console.log(`%c${msg}`, `color: ${color}; font-size: 15px`);
+function printMsg(msg, color = "black", fontSize = 15, ...styles) {
+   const optionStyle = [];
+   styles.forEach(style => optionStyle.push(style));
+   const allStyles = `color: ${color}; font-size: ${fontSize}px; ${optionStyle.join(" ; ")}`;
+   console.log(`%c${msg}`, allStyles);
 }
 
 /**
+ * # Function
+ * ## isEMpty()
  * Vérifie que la valeur de l'input ne soit pas vide
- * @param input
+ * @param input | DOM Element
  * @returns {boolean}
  */
 function isEmpty(input) {
@@ -185,9 +224,11 @@ function isEmpty(input) {
 }
 
 /**
- * Vérifie si la longueur des noms ou prénom est valide
- * @param input
- * @param i
+ * # Function
+ * ## minLength()
+ * Vérifie si la longueur des noms ou prénom sont valides
+ * @param input | DOM Element
+ * @param i | Valeure minimale
  * @returns {boolean}
  */
 function minLength(input, i) {
@@ -199,8 +240,10 @@ function minLength(input, i) {
 }
 
 /**
+ * # Function
+ * ## isEmail()
  * Vérifie si le format de mail est valide
- * @param email
+ * @param email | [type String]
  * @returns {boolean}
  */
 function isEmail(email) {
@@ -215,8 +258,10 @@ function isEmail(email) {
 }
 
 /**
+ * # Function
+ * ## isSelected()
  * Vérifie si une ville a été sélectionnée
- * @param radios
+ * @param radios | Liste des éléments du DOM de type radio
  * @returns {boolean}
  */
 function isSelected(radios) {
@@ -228,8 +273,10 @@ function isSelected(radios) {
 }
 
 /**
+ * # Function
+ * ## isChecked()
  * Vérifie que les CGU ont bien été acceptées
- * @param checkbox
+ * @param checkbox | Checkbox Dom Element
  * @returns {boolean}
  */
 function isChecked(checkbox) {
@@ -241,11 +288,12 @@ function isChecked(checkbox) {
 }
 
 /**
+ * # Function
+ * ## setErrorTo()
  * Active les styles [data-error-visible] pour l'élément parent
- *
  * Affiche le message d'erreur
- * @param input
- * @param message
+ * @param input, DOM Element
+ * @param message, Message d'erreur
  */
 function setErrorTo(input, message) {
    const formData = input.parentElement;
@@ -255,13 +303,13 @@ function setErrorTo(input, message) {
 }
 
 /**
+ * # Function
+ * ## setValidTo()
  * Désactive les styles [data-error-visible] pour l'élément parent
- * @param input
+ * @param input, DOM Element
  */
 function setValidTo(input) {
    const formData = input.parentElement;
    formData.dataset.error = "";
    formData.dataset.errorVisible = false;
 }
-
-//endregion
