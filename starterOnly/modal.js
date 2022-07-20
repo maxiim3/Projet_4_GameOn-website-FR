@@ -32,10 +32,6 @@ function closeModal() {
    modalBg.style.display = 'none';
 }
 
-(function () {
-   modalBg.style.display = 'block';
-})();
-
 // endregion
 
 //region Form Validation
@@ -246,6 +242,7 @@ function setErrorTo(input, message) {
  */
 function setValidTo(input) {
    const formData = input.parentElement;
+   formData.dataset.error = '';
    formData.dataset.errorVisible = false;
 }
 

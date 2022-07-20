@@ -1,7 +1,7 @@
 /* General */
 :root {
   --font-default: "DM Sans", Arial, Helvetica, sans-serif;
-  --font-slab: "Roboto", sans-serif ;
+  --font-slab: "Roboto", sans-serif;
   --modal-duration: 0.8s;
 }
 
@@ -52,15 +52,17 @@ p {
 .topnav a.active {
   text-decoration: underline;
   color: #ffffff;
-  border-radius: 15px;
+  border-radius: 10px;
   background-color: #ff0000;
   text-underline-offset: 5px;
 }
 
 .topnav a:hover {
+  text-decoration: underline;
   color: #ffffff;
-  border-radius: 15px;
+  border-radius: 10px;
   background-color: #ff0000;
+  text-underline-offset: 5px;
 }
 
 .topnav .icon {
@@ -115,7 +117,7 @@ p {
   padding: 1em;
   cursor: pointer;
   color: #fff;
-  border-radius: 15px;
+  border-radius: 10px;
   background: #fe142f;
 }
 
@@ -128,6 +130,7 @@ p {
   overflow: hidden;
   width: 100%;
   max-width: 500px;
+  height: min(750px, 100%);
   margin: 5% auto;
   padding-top: 10px;
   animation-name: modalopen;
@@ -140,6 +143,7 @@ p {
 .modal-body {
   margin: 15px auto;
   padding: 15px 8%;
+  height: 100%;
 }
 
 .close {
@@ -149,7 +153,7 @@ p {
   width: 32px;
   height: 32px;
   cursor: pointer;
-  transform: scale(0.7);
+  transform: scale(0.6);
   opacity: 1;
 }
 
@@ -172,7 +176,8 @@ p {
 }
 
 .btn-submit,
-.btn-signup {
+.btn-signup,
+.button.close-modal {
   font-size: 1rem;
   display: block;
   margin: 0 auto;
@@ -182,6 +187,12 @@ p {
   border: 0;
   border-radius: 7px;
   background: #fe142f;
+}
+
+.btn-submit:hover,
+.btn-signup:hover,
+.button.close-modal:hover {
+  background: #3876ac;
 }
 
 /* Form */
@@ -211,14 +222,15 @@ input {
 }
 
 .formData[data-error]::after {
-  font-size: 0.6em;
+  font-size: 10px;
+  font-weight: 400;
   line-height: 0.3;
   display: block;
   margin-top: 7px;
   margin-bottom: 7px;
   content: attr(data-error);
   transition: 0.3s;
-  text-align: right;
+  text-align: left;
   opacity: 0;
   color: #e54858;
 }
@@ -464,7 +476,7 @@ main {
 
 .copyrights {
   font-size: 1rem;
-  font-weight: bolder;
+  font-weight: 400;
   margin: 60px 0 30px;
   padding: 0;
   color: #fe142f;
@@ -488,8 +500,17 @@ main {
   line-height: 50px;
   position: relative;
   display: none;
-  height: 100%;
   text-align: center;
+  height: 100%;
+}
+
+#feedback p {
+  width: 288px;
+}
+
+#feedback .button.close-modal {
+  position: relative;
+  top: 250px;
 }
 
 #feedback[data-form-valid=true] {
@@ -553,7 +574,6 @@ main {
 @media screen and (max-width: 800px) {
   .bground {
     background: transparent;
-    overflow: hidden;
     width: 100%;
   }
   .content {
@@ -561,12 +581,31 @@ main {
     width: 100%;
     transform: translateY(8vh);
   }
-  label, .text-label {
-    font-size: 13px;
+  label,
+.text-label {
+    font-size: 14px;
     font-weight: 200;
+    margin-bottom: 7px;
+  }
+  .checkbox2-label {
+    margin-block: 0;
+    font-weight: 400;
+  }
+  .checkbox2-label:last-of-type {
+    top: -6px;
+  }
+  .responsive-text {
+    display: none;
   }
   .formData {
     margin-bottom: 6px;
+  }
+  .formData[data-error]::after {
+    font-size: 10px;
+    line-height: 0;
+    display: block;
+    margin-top: 9px;
+    margin-bottom: 0;
   }
   label {
     margin-bottom: 6px;
@@ -583,7 +622,7 @@ main {
   }
   .btn-submit {
     display: block;
-    margin: 10px auto 0px;
+    margin: 6px auto 0;
     font-size: 14px;
     font-weight: 200;
     padding: 6px 30px 6.4px;
@@ -613,6 +652,9 @@ main {
     display: block;
     padding-right: 15%;
   }
+  .hero-headline br {
+    display: none;
+  }
   .hero-text {
     width: fit-content;
     padding-right: 15%;
@@ -641,7 +683,125 @@ main {
     font-size: 10px;
     font-weight: 400;
   }
+  #feedback .button.close-modal {
+    top: 197px;
+  }
 }
+/*# sourceMappingURL=modal.css.map */
+/*# sourceMappingURL=modal.css.map */
+/*# sourceMappingURL=modal.css.map */
+/*# sourceMappingURL=modal.css.map */
+/*# sourceMappingURL=modal.css.map */
+/*# sourceMappingURL=modal.css.map */
+/*# sourceMappingURL=modal.css.map */
+/*# sourceMappingURL=modal.css.map */
+/*# sourceMappingURL=modal.css.map */
+/*# sourceMappingURL=modal.css.map */
+/*# sourceMappingURL=modal.css.map */
+/*# sourceMappingURL=modal.css.map */
+/*# sourceMappingURL=modal.css.map */
+/*# sourceMappingURL=modal.css.map */
+/*# sourceMappingURL=modal.css.map */
+/*# sourceMappingURL=modal.css.map */
+/*# sourceMappingURL=modal.css.map */
+/*# sourceMappingURL=modal.css.map */
+/*# sourceMappingURL=modal.css.map */
+/*# sourceMappingURL=modal.css.map */
+/*# sourceMappingURL=modal.css.map */
+/*# sourceMappingURL=modal.css.map */
+/*# sourceMappingURL=modal.css.map */
+/*# sourceMappingURL=modal.css.map */
+/*# sourceMappingURL=modal.css.map */
+/*# sourceMappingURL=modal.css.map */
+/*# sourceMappingURL=modal.css.map */
+/*# sourceMappingURL=modal.css.map */
+/*# sourceMappingURL=modal.css.map */
+/*# sourceMappingURL=modal.css.map */
+/*# sourceMappingURL=modal.css.map */
+/*# sourceMappingURL=modal.css.map */
+/*# sourceMappingURL=modal.css.map */
+/*# sourceMappingURL=modal.css.map */
+/*# sourceMappingURL=modal.css.map */
+/*# sourceMappingURL=modal.css.map */
+/*# sourceMappingURL=modal.css.map */
+/*# sourceMappingURL=modal.css.map */
+/*# sourceMappingURL=modal.css.map */
+/*# sourceMappingURL=modal.css.map */
+/*# sourceMappingURL=modal.css.map */
+/*# sourceMappingURL=modal.css.map */
+/*# sourceMappingURL=modal.css.map */
+/*# sourceMappingURL=modal.css.map */
+/*# sourceMappingURL=modal.css.map */
+/*# sourceMappingURL=modal.css.map */
+/*# sourceMappingURL=modal.css.map */
+/*# sourceMappingURL=modal.css.map */
+/*# sourceMappingURL=modal.css.map */
+/*# sourceMappingURL=modal.css.map */
+/*# sourceMappingURL=modal.css.map */
+/*# sourceMappingURL=modal.css.map */
+/*# sourceMappingURL=modal.css.map */
+/*# sourceMappingURL=modal.css.map */
+/*# sourceMappingURL=modal.css.map */
+/*# sourceMappingURL=modal.css.map */
+/*# sourceMappingURL=modal.css.map */
+/*# sourceMappingURL=modal.css.map */
+/*# sourceMappingURL=modal.css.map */
+/*# sourceMappingURL=modal.css.map */
+/*# sourceMappingURL=modal.css.map */
+/*# sourceMappingURL=modal.css.map */
+/*# sourceMappingURL=modal.css.map */
+/*# sourceMappingURL=modal.css.map */
+/*# sourceMappingURL=modal.css.map */
+/*# sourceMappingURL=modal.css.map */
+/*# sourceMappingURL=modal.css.map */
+/*# sourceMappingURL=modal.css.map */
+/*# sourceMappingURL=modal.css.map */
+/*# sourceMappingURL=modal.css.map */
+/*# sourceMappingURL=modal.css.map */
+/*# sourceMappingURL=modal.css.map */
+/*# sourceMappingURL=modal.css.map */
+/*# sourceMappingURL=modal.css.map */
+/*# sourceMappingURL=modal.css.map */
+/*# sourceMappingURL=modal.css.map */
+/*# sourceMappingURL=modal.css.map */
+/*# sourceMappingURL=modal.css.map */
+/*# sourceMappingURL=modal.css.map */
+/*# sourceMappingURL=modal.css.map */
+/*# sourceMappingURL=modal.css.map */
+/*# sourceMappingURL=modal.css.map */
+/*# sourceMappingURL=modal.css.map */
+/*# sourceMappingURL=modal.css.map */
+/*# sourceMappingURL=modal.css.map */
+/*# sourceMappingURL=modal.css.map */
+/*# sourceMappingURL=modal.css.map */
+/*# sourceMappingURL=modal.css.map */
+/*# sourceMappingURL=modal.css.map */
+/*# sourceMappingURL=modal.css.map */
+/*# sourceMappingURL=modal.css.map */
+/*# sourceMappingURL=modal.css.map */
+/*# sourceMappingURL=modal.css.map */
+/*# sourceMappingURL=modal.css.map */
+/*# sourceMappingURL=modal.css.map */
+/*# sourceMappingURL=modal.css.map */
+/*# sourceMappingURL=modal.css.map */
+/*# sourceMappingURL=modal.css.map */
+/*# sourceMappingURL=modal.css.map */
+/*# sourceMappingURL=modal.css.map */
+/*# sourceMappingURL=modal.css.map */
+/*# sourceMappingURL=modal.css.map */
+/*# sourceMappingURL=modal.css.map */
+/*# sourceMappingURL=modal.css.map */
+/*# sourceMappingURL=modal.css.map */
+/*# sourceMappingURL=modal.css.map */
+/*# sourceMappingURL=modal.css.map */
+/*# sourceMappingURL=modal.css.map */
+/*# sourceMappingURL=modal.css.map */
+/*# sourceMappingURL=modal.css.map */
+/*# sourceMappingURL=modal.css.map */
+/*# sourceMappingURL=modal.css.map */
+/*# sourceMappingURL=modal.css.map */
+/*# sourceMappingURL=modal.css.map */
+/*# sourceMappingURL=modal.css.map */
 /*# sourceMappingURL=modal.css.map */
 /*# sourceMappingURL=modal.css.map */
 /*# sourceMappingURL=modal.css.map */
