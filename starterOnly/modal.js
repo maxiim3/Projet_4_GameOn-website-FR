@@ -1,42 +1,64 @@
+window.addEventListener("resize", () => {
+   let width = window.screen.width;
+
+   const ratio = 0.02;
+   const pixels = 2;
+
+   const pixel = 40;
+
+   let viewWidth = width * ratio + pixels;
+
+   console.log(`${viewWidth}px`);
+});
+
 // region Navigation
-const iconNavBar = document.getElementById('iconNavBar');
+const iconNavBar = document.getElementById("iconNavBar");
 // open toNav menu
-iconNavBar.addEventListener('click', editNav);
+iconNavBar.addEventListener("click", editNav);
 
 // set topNav classes
 function editNav() {
-   const topNav = document.getElementById('myTopnav');
-   if (topNav.className === 'topnav') {
-      topNav.className += ' responsive';
+   const topNav = document.getElementById("myTopnav");
+   if (topNav.className === "topnav") {
+      topNav.className += " responsive";
    } else {
-      topNav.className = 'topnav';
+      topNav.className = "topnav";
    }
 }
+
 // endregion
 
 // region Modal Control
-const modalBg = document.querySelector('.bground');
-const modalBtn = [...document.querySelectorAll('.modal-btn')];
-const closeBtn = [...document.querySelectorAll('.close-modal')];
+const modalBg = document.querySelector(".bground");
+const modalBtn = [...document.querySelectorAll(".modal-btn")];
+const closeBtn = [...document.querySelectorAll(".close-modal")];
+const hero = document.querySelector(".hero-section");
+const main = document.querySelector("main");
+const footer = document.querySelector("footer");
 // launch modal e[vent]
-modalBtn.forEach(btn => btn.addEventListener('click', launchModal));
+modalBtn.forEach(btn => btn.addEventListener("click", launchModal));
 // close modal event
-closeBtn.forEach(btn => btn.addEventListener('click', closeModal));
+closeBtn.forEach(btn => btn.addEventListener("click", closeModal));
 
 // launch modal form
 function launchModal() {
-   modalBg.style.display = 'block';
+   modalBg.style.display = "block";
+   hero.style.visibility = "hidden";
+   footer.style.visibility = "hidden";
 }
+
 // close modal form
 function closeModal() {
-   modalBg.style.display = 'none';
+   modalBg.style.display = "none";
+   hero.style.visibility = "visible";
+   footer.style.visibility = "visible";
 }
 
 // endregion
 
 //region Form Validation
-const btnSubmit = document.querySelector('.btn-submit');
-btnSubmit.addEventListener('click', validate);
+const btnSubmit = document.querySelector(".btn-submit");
+btnSubmit.addEventListener("click", validate);
 
 /**
  * # Validate Form
@@ -46,18 +68,14 @@ btnSubmit.addEventListener('click', validate);
 function validate(e) {
    e.preventDefault();
    // Form Elements
-   const form = document.getElementById('form');
-   const feedback = document.getElementById('feedback');
 
    try {
       (function () {
          if (checkUserInput()) {
-            form.dataset.formValid = 'true';
-            feedback.dataset.formValid = 'true';
-            printMsg('Formulaire envoyé avec succès!', 'green');
+            modalBg.dataset.formValid = "true";
+            printMsg("Formulaire envoyé avec succès!", "green");
          } else {
-            form.dataset.formValid = 'false';
-            feedback.dataset.formValid = 'false';
+            modalBg.dataset.formValid = "false";
             throw new Error("Le formulaire ne peut être envoyé car il n'est pas valide");
          }
       })();
@@ -73,17 +91,17 @@ function validate(e) {
  */
 function checkUserInput() {
    //region DOM Form Elements
-   const firstname = document.getElementById('first');
-   const lastname = document.getElementById('last');
-   const email = document.getElementById('email');
-   const birthdate = document.getElementById('birthdate');
-   const quantity = document.getElementById('quantity');
-   const radios = [...document.querySelectorAll('#radios .checkbox-input')];
-   const checkboxCGU = document.querySelector('#checkboxes #checkbox1');
+   const firstname = document.getElementById("first");
+   const lastname = document.getElementById("last");
+   const email = document.getElementById("email");
+   const birthdate = document.getElementById("birthdate");
+   const quantity = document.getElementById("quantity");
+   const radios = [...document.querySelectorAll("#radios .checkbox-input")];
+   const checkboxCGU = document.querySelector("#checkboxes #checkbox1");
 
    //endregion
 
-   printMsg('Checking Values...', 'limegreen');
+   printMsg("Checking Values...", "limegreen");
 
    let validInputs = 0;
    let requiredValid = 0;
@@ -149,7 +167,7 @@ function checkUserInput() {
  * @param msg
  * @param color
  */
-function printMsg(msg, color = 'black') {
+function printMsg(msg, color = "black") {
    console.log(`%c${msg}`, `color: ${color}; font-size: 15px`);
 }
 
@@ -159,8 +177,8 @@ function printMsg(msg, color = 'black') {
  * @returns {boolean}
  */
 function isEmpty(input) {
-   if (input.value.trim() === '') {
-      setErrorTo(input, `${input.ariaLabel || input.title} doit être renseigner`);
+   if (input.value.trim() === "") {
+      setErrorTo(input, `${input.ariaLabel || input.title} doit être renseigné`);
       return true;
    }
    return false;
@@ -191,7 +209,7 @@ function isEmail(email) {
    if (regex.test(email.value.trim())) {
       return true;
    } else {
-      setErrorTo(email, 'Veuillez renseigner un email valid svp');
+      setErrorTo(email, "Veuillez renseigner un email valid svp");
       return false;
    }
 }
@@ -203,7 +221,7 @@ function isEmail(email) {
  */
 function isSelected(radios) {
    if (radios.every(radio => !radio.checked)) {
-      setErrorTo(radios[0], 'Vous devez choisir un tournois');
+      setErrorTo(radios[0], "Vous devez choisir un tournois");
       return true;
    }
    return false;
@@ -242,7 +260,7 @@ function setErrorTo(input, message) {
  */
 function setValidTo(input) {
    const formData = input.parentElement;
-   formData.dataset.error = '';
+   formData.dataset.error = "";
    formData.dataset.errorVisible = false;
 }
 

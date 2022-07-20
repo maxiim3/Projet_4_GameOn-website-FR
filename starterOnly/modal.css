@@ -28,7 +28,7 @@ main {
 
 p {
   margin-bottom: 0;
-  padding: 0.5vw;
+  padding: min(8.2px, 0.5vw);
 }
 
 /* Nav Bar | Header */
@@ -49,7 +49,7 @@ p {
   color: #000000;
 }
 
-.topnav a.active {
+.topnav a.active:not(.icon) {
   text-decoration: underline;
   color: #ffffff;
   border-radius: 10px;
@@ -57,7 +57,7 @@ p {
   text-underline-offset: 5px;
 }
 
-.topnav a:hover {
+.topnav a:hover:not(.icon) {
   text-decoration: underline;
   color: #ffffff;
   border-radius: 10px;
@@ -78,8 +78,8 @@ p {
 }
 
 .main-navbar {
-  float: right;
   display: flex;
+  float: right;
 }
 
 /* Modal */
@@ -130,7 +130,6 @@ p {
   overflow: hidden;
   width: 100%;
   max-width: 500px;
-  height: min(750px, 100%);
   margin: 5% auto;
   padding-top: 10px;
   animation-name: modalopen;
@@ -141,9 +140,9 @@ p {
 }
 
 .modal-body {
+  height: 100%;
   margin: 15px auto;
   padding: 15px 8%;
-  height: 100%;
 }
 
 .close {
@@ -179,10 +178,12 @@ p {
 .btn-signup,
 .button.close-modal {
   font-size: 1rem;
+  font-weight: 400;
   display: block;
   margin: 0 auto;
   padding: 12px 82px;
   cursor: pointer;
+  letter-spacing: 0.5px;
   color: #fff;
   border: 0;
   border-radius: 7px;
@@ -193,6 +194,11 @@ p {
 .btn-signup:hover,
 .button.close-modal:hover {
   background: #3876ac;
+}
+
+.btn-submit {
+  font-size: 14px;
+  margin: 20px auto 0;
 }
 
 /* Form */
@@ -241,6 +247,61 @@ input {
 
 .formData[data-error-visible=true] .text-control {
   border: 2px solid #e54858;
+}
+
+.bground[data-form-valid=true] #form {
+  visibility: hidden;
+  transition: visibility 0s;
+  z-index: -1;
+}
+
+.bground[data-form-valid=true] .checkbox-label .checkbox-icon,
+.bground[data-form-valid=true] .checkbox2-label .checkbox-icon {
+  border: none;
+  transition: all 0s;
+}
+
+.bground[data-form-valid=true] .checkbox-label .checkbox-icon::after,
+.bground[data-form-valid=true] .checkbox2-label .checkbox-icon::after {
+  background-color: rgba(39, 158, 122, 0);
+  transition: all 0s;
+}
+
+.bground[data-form-valid=true] #feedback {
+  display: grid;
+  place-content: center;
+}
+
+.bground[data-form-valid=false] #form {
+  visibility: visible;
+}
+
+.bground[data-form-valid=false] #feedback {
+  display: none;
+  transition: visibility 0s;
+}
+
+#feedback {
+  font-size: 36px;
+  font-weight: 400;
+  line-height: 50px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: none;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  padding-inline: 20%;
+}
+
+#feedback p {
+  width: 288px;
+}
+
+#feedback .button.close-modal {
+  position: relative;
+  top: 250px;
 }
 
 /* Checkboxes */
@@ -442,7 +503,7 @@ main {
 }
 
 .hero-headline {
-  font-size: 6rem;
+  font-size: min(6rem, 8vw + 8px);
   font-weight: normal;
   white-space: nowrap;
 }
@@ -470,8 +531,8 @@ main {
   display: block;
   width: 90%;
   height: 100%;
-  object-fit: cover;
   transform: translateX(12%);
+  object-fit: cover;
 }
 
 .copyrights {
@@ -483,42 +544,6 @@ main {
 }
 
 .hero-section > .btn-signup {
-  display: none;
-}
-
-#form[data-form-valid=true] {
-  display: none;
-}
-
-#form[data-form-valid=false] {
-  display: block;
-}
-
-#feedback {
-  font-size: 36px;
-  font-weight: 400;
-  line-height: 50px;
-  position: relative;
-  display: none;
-  text-align: center;
-  height: 100%;
-}
-
-#feedback p {
-  width: 288px;
-}
-
-#feedback .button.close-modal {
-  position: relative;
-  top: 250px;
-}
-
-#feedback[data-form-valid=true] {
-  display: grid;
-  place-content: center;
-}
-
-#feedback[data-form-valid=false] {
   display: none;
 }
 
@@ -537,59 +562,76 @@ main {
   margin-inline: 20px;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 800px) {
+  body {
+    justify-content: space-between;
+    min-height: 100vh;
+  }
+  .topnav,
+main {
+    margin-inline: max(5px, 1.2vw);
+  }
   .header-logo {
     float: none;
   }
   .header-logo img {
     width: 140px;
-    padding-left: 1rem;
     padding-bottom: 0;
+    padding-left: 1rem;
   }
   .main-navbar {
     flex-direction: column;
     flex-wrap: wrap;
   }
+  .topnav {
+    position: relative;
+    overflow: visible;
+  }
   .topnav a {
     display: none;
   }
   .topnav a.icon {
-    float: right;
-    display: block;
-  }
-  .topnav {
-    position: relative;
-  }
-  .topnav .icon {
     position: absolute;
-    right: 0;
     top: 0;
+    right: 0;
+    display: block;
+    float: right;
+    color: #fe142f;
   }
   .topnav.responsive a {
-    float: none;
     display: block;
+    float: none;
     text-align: right;
   }
-}
-@media screen and (max-width: 800px) {
   .bground {
-    background: transparent;
     width: 100%;
+    background: transparent;
   }
   .content {
-    height: 92vh;
     width: 100%;
     transform: translateY(8vh);
   }
+  .modal-body {
+    padding: 5px max(25px, 6vw) 0;
+  }
   label,
 .text-label {
-    font-size: 14px;
+    font-size: min(14px, 2vw + 2px);
     font-weight: 200;
     margin-bottom: 7px;
   }
+  .text-control {
+    font-size: 18px;
+    width: 100%;
+    height: max(40px, 6vw);
+    margin: 0;
+    padding: 8px;
+    border-radius: 8px;
+  }
   .checkbox2-label {
-    margin-block: 0;
+    font-size: min(14px, 2vw + 2px);
     font-weight: 400;
+    margin-block: 0;
   }
   .checkbox2-label:last-of-type {
     top: -6px;
@@ -604,41 +646,45 @@ main {
     font-size: 10px;
     line-height: 0;
     display: block;
-    margin-top: 9px;
-    margin-bottom: 0;
+    margin-top: 7px;
+    margin-bottom: 3px;
+    flex-basis: 100%;
   }
   label {
     margin-bottom: 6px;
-    letter-spacing: 0;
     text-align: left;
+    letter-spacing: 0;
   }
   #radios {
-    margin-bottom: 0;
     display: flex;
     flex-wrap: wrap;
-  }
-  .modal-body {
-    padding: 5px 25px 0;
+    margin-bottom: 0;
+    max-width: 400px;
   }
   .btn-submit {
-    display: block;
-    margin: 6px auto 0;
     font-size: 14px;
     font-weight: 200;
+    display: block;
+    margin: 0 auto;
     padding: 6px 30px 6.4px;
   }
-  .topnav {
-    overflow: visible;
+  #feedback .button.close-modal {
+    top: 197px;
   }
   .hero-section {
     display: block;
+    max-height: none;
     box-shadow: unset;
   }
   .hero-content {
-    background: #fff;
+    width: min(450px, 100%);
+    min-width: unset;
+    text-align: left;
     color: #000;
+    background: #fff;
     padding-inline: 1rem;
     padding-block: 0;
+    margin-inline: auto;
   }
   .hero-content::after {
     content: unset;
@@ -647,46 +693,131 @@ main {
     display: none;
   }
   .hero-headline {
-    font-size: 40px;
-    white-space: normal;
+    font-size: min(max(2.5rem, 7vw), 9vw + 1px);
     display: block;
-    padding-right: 15%;
+    white-space: normal;
   }
   .hero-headline br {
     display: none;
   }
   .hero-text {
-    width: fit-content;
-    padding-right: 15%;
-    font-size: 13px;
+    font-size: min(max(0.8rem, 2vw + 1px), 3.4vw);
+    width: auto;
+    max-width: max(330px, 80vw);
     margin-top: 1.5rem;
+    white-space: unset;
   }
   .hero-img {
+    overflow: hidden;
+    max-height: 350px;
     padding-inline: 1rem;
+    margin-inline: auto;
   }
   .hero-img img {
-    border-radius: 10px;
+    width: min(412px, 100%);
+    height: 100%;
     margin-top: 40px;
-    width: 100%;
     transform: translate(0);
+    border-radius: 10px;
+    object-fit: contain;
+    margin-inline: auto;
+    object-position: center;
   }
   .hero-section > .btn-signup {
-    display: block;
-    margin: 32px auto 10px;
     font-size: 14px;
     font-weight: 200;
+    display: block;
+    margin: 20px auto 10px;
     padding: 6px 30px 6.4px;
   }
   .copyrights {
-    margin-block: 0;
-    text-align: center;
     font-size: 10px;
     font-weight: 400;
-  }
-  #feedback .button.close-modal {
-    top: 197px;
+    text-align: center;
+    margin-block: 0;
   }
 }
+@media screen and (min-width: 480px) and (max-width: 800px) {
+  .hero-content {
+    text-align: center;
+  }
+  main {
+    margin: 0;
+    border-radius: unset;
+    padding-block: 3rem;
+  }
+  .hero-img img {
+    border-radius: 10px;
+  }
+}
+/*# sourceMappingURL=modal.css.map */
+/*# sourceMappingURL=modal.css.map */
+/*# sourceMappingURL=modal.css.map */
+/*# sourceMappingURL=modal.css.map */
+/*# sourceMappingURL=modal.css.map */
+/*# sourceMappingURL=modal.css.map */
+/*# sourceMappingURL=modal.css.map */
+/*# sourceMappingURL=modal.css.map */
+/*# sourceMappingURL=modal.css.map */
+/*# sourceMappingURL=modal.css.map */
+/*# sourceMappingURL=modal.css.map */
+/*# sourceMappingURL=modal.css.map */
+/*# sourceMappingURL=modal.css.map */
+/*# sourceMappingURL=modal.css.map */
+/*# sourceMappingURL=modal.css.map */
+/*# sourceMappingURL=modal.css.map */
+/*# sourceMappingURL=modal.css.map */
+/*# sourceMappingURL=modal.css.map */
+/*# sourceMappingURL=modal.css.map */
+/*# sourceMappingURL=modal.css.map */
+/*# sourceMappingURL=modal.css.map */
+/*# sourceMappingURL=modal.css.map */
+/*# sourceMappingURL=modal.css.map */
+/*# sourceMappingURL=modal.css.map */
+/*# sourceMappingURL=modal.css.map */
+/*# sourceMappingURL=modal.css.map */
+/*# sourceMappingURL=modal.css.map */
+/*# sourceMappingURL=modal.css.map */
+/*# sourceMappingURL=modal.css.map */
+/*# sourceMappingURL=modal.css.map */
+/*# sourceMappingURL=modal.css.map */
+/*# sourceMappingURL=modal.css.map */
+/*# sourceMappingURL=modal.css.map */
+/*# sourceMappingURL=modal.css.map */
+/*# sourceMappingURL=modal.css.map */
+/*# sourceMappingURL=modal.css.map */
+/*# sourceMappingURL=modal.css.map */
+/*# sourceMappingURL=modal.css.map */
+/*# sourceMappingURL=modal.css.map */
+/*# sourceMappingURL=modal.css.map */
+/*# sourceMappingURL=modal.css.map */
+/*# sourceMappingURL=modal.css.map */
+/*# sourceMappingURL=modal.css.map */
+/*# sourceMappingURL=modal.css.map */
+/*# sourceMappingURL=modal.css.map */
+/*# sourceMappingURL=modal.css.map */
+/*# sourceMappingURL=modal.css.map */
+/*# sourceMappingURL=modal.css.map */
+/*# sourceMappingURL=modal.css.map */
+/*# sourceMappingURL=modal.css.map */
+/*# sourceMappingURL=modal.css.map */
+/*# sourceMappingURL=modal.css.map */
+/*# sourceMappingURL=modal.css.map */
+/*# sourceMappingURL=modal.css.map */
+/*# sourceMappingURL=modal.css.map */
+/*# sourceMappingURL=modal.css.map */
+/*# sourceMappingURL=modal.css.map */
+/*# sourceMappingURL=modal.css.map */
+/*# sourceMappingURL=modal.css.map */
+/*# sourceMappingURL=modal.css.map */
+/*# sourceMappingURL=modal.css.map */
+/*# sourceMappingURL=modal.css.map */
+/*# sourceMappingURL=modal.css.map */
+/*# sourceMappingURL=modal.css.map */
+/*# sourceMappingURL=modal.css.map */
+/*# sourceMappingURL=modal.css.map */
+/*# sourceMappingURL=modal.css.map */
+/*# sourceMappingURL=modal.css.map */
 /*# sourceMappingURL=modal.css.map */
 /*# sourceMappingURL=modal.css.map */
 /*# sourceMappingURL=modal.css.map */
