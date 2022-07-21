@@ -1,9 +1,4 @@
 /*region General*/
-:root {
-   --font-default: "DM Sans", Arial, Helvetica, sans-serif;
-   --font-slab: "Roboto", sans-serif;
-   --modal-duration: 0.8s;
-}
 
 * {
    box-sizing: border-box;
@@ -12,7 +7,7 @@
 }
 
 body {
-   font-family: var(--font-default);
+   font-family: "DM Sans", Arial, Helvetica, sans-serif;
    font-size: 18px;
    display: flex;
    flex-direction: column;
@@ -118,7 +113,7 @@ p {
    margin: 5% auto;
    padding-top: 10px;
    animation-name: modalopen;
-   animation-duration: var(--modal-duration);
+   animation-duration: 0.8s;
    color: #fff;
    border-radius: 10px;
    background: #232323;
@@ -222,7 +217,7 @@ p {
 /*region  Form */
 /*region Input and Label */
 label {
-   font-family: var(--font-default);
+   font-family: "DM Sans", Arial, Helvetica, sans-serif;
    font-size: 17px;
    font-weight: normal;
    display: inline-block;
@@ -578,7 +573,7 @@ main {
 
 /*region Footer*/
 .footer {
-   font-family: var(--font-slab);
+   font-family: "Roboto", sans-serif;
    margin-inline: 20px;
 }
 
