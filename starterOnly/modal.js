@@ -84,14 +84,14 @@ function validate(e) {
       (function () {
          if (checkUserInput()) {
             modalBg.dataset.formValid = "true";
-            printMsg("Formulaire envoyé avec succès!", "green", 21, "font-weight: bold");
+            // printMsg("Formulaire envoyé avec succès!", "green", 21, "font-weight: bold");
          } else {
             modalBg.dataset.formValid = "false";
-            throw new Error("Le formulaire ne peut être envoyé car il n'est pas valide");
+            // throw new Error("Le formulaire ne peut être envoyé car il n'est pas valide");
          }
       })();
    } catch (e) {
-      console.warn(`... ${e.name} : ${e.message}`);
+      return e;
    }
 }
 
@@ -115,13 +115,13 @@ function checkUserInput() {
    let requiredValid = 0;
 
    // Retour console
-   printMsg(
-      "Checking Values...",
-      "limegreen",
-      13,
-      "font-weight: bold",
-      "text-decoration: underline"
-   );
+   // printMsg(
+   //    "Checking Values...",
+   //    "limegreen",
+   //    13,
+   //    "font-weight: bold",
+   //    "text-decoration: underline"
+   // );
 
    /**
     * Lance les vérifications pour chaques saisies obligatoires
@@ -185,8 +185,8 @@ function checkUserInput() {
    })();
 
    // Retour Console
-   printMsg(`validInputs: ${validInputs}`, undefined, 11);
-   printMsg(`requiredValid: ${requiredValid}`, undefined, 11);
+   // printMsg(`validInputs: ${validInputs}`, undefined, 11);
+   // printMsg(`requiredValid: ${requiredValid}`, undefined, 11);
 
    // output
    return validInputs === requiredValid;
@@ -201,12 +201,12 @@ function checkUserInput() {
  * @param fontSize | Par défaut '15'
  * @param styles | Styles Optionnels...
  */
-function printMsg(msg, color = "black", fontSize = 15, ...styles) {
-   const optionStyle = [];
-   styles.forEach(style => optionStyle.push(style));
-   const allStyles = `color: ${color}; font-size: ${fontSize}px; ${optionStyle.join(" ; ")}`;
-   console.log(`%c${msg}`, allStyles);
-}
+// function printMsg(msg, color = "black", fontSize = 15, ...styles) {
+//    const optionStyle = [];
+//    styles.forEach(style => optionStyle.push(style));
+//    const allStyles = `color: ${color}; font-size: ${fontSize}px; ${optionStyle.join(" ; ")}`;
+//    // console.log(`%c${msg}`, allStyles);
+// }
 
 /**
  * # Function
