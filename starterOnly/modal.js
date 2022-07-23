@@ -310,7 +310,6 @@ function isChecked(checkbox) {
  * Affiche le message d'erreur
  * @param input DOM Element
  * @param message Message d'erreur
- * @param element Element sur lequel sera appliqué le message d'erreur. Par défaut : **parentElement**
  */
 function setErrorTo(input, message) {
     const formData = input.parentElement;
