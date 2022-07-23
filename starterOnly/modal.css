@@ -247,8 +247,8 @@ input {
    font-weight: 400;
    line-height: 0.3;
    display: block;
-   margin-top: 7px;
-   margin-bottom: 7px;
+   margin-top: 9px;
+   margin-bottom: 1px;
    content: attr(data-error);
    transition: 0.3s;
    text-align: left;
@@ -260,16 +260,21 @@ input {
    opacity: 1;
 }
 
-.formData[data-error-visible="true"] .text-control {
+.formData[data-error-visible="true"] .text-control{
    border: 2px solid #e54858;
 }
 
 .bground[data-form-valid="true"] #form {
    visibility: hidden;
+   height: 40%;
    transition: visibility 0s;
    z-index: -1;
 }
 
+.bground[data-form-valid="true"] .formData[data-error]::after {
+   margin: 0;
+   padding: 0;
+}
 .bground[data-form-valid="true"] .checkbox-label .checkbox-icon,
 .bground[data-form-valid="true"] .checkbox2-label .checkbox-icon {
    border: none;

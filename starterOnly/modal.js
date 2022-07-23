@@ -6,97 +6,52 @@
 // DOM NavBar
 const topNav = document.querySelector('#myTopnav')
 const iconNavBar = document.getElementById("iconNavBar");
+
 // DOM Modal
 const modalBg = document.querySelector(".bground");
-const modalContent = document.querySelector(".content");
 const modalBtn = [...document.querySelectorAll(".modal-btn")];
 const closeBtn = [...document.querySelectorAll(".close-modal")];
 const btnSubmit = document.querySelector(".btn-submit");
+
 // DOM Hero
 const hero = document.querySelector(".hero-section");
+
 // DOM Footer
 const footer = document.querySelector("footer");
 
 /**
  * # Event Listener
+ * ## IIFE (Immediately Invoked Function Expression)
  * @type {EventListener}
  */
 
 (
-   function () {
-      // NavBar Burger Icon
-      iconNavBar.addEventListener("click", editNav);
-      // Open Modal
-      modalBtn.forEach(btn => btn.addEventListener("click", launchModal));
-      // Close Modal
-      closeBtn.forEach(btn => btn.addEventListener("click", closeModal));
-      // Check and Submit Form
-      btnSubmit.addEventListener("click", validate);
-      // Observe top Nav et appelle setModalStyle
-      new ResizeObserver(setModalStyle).observe(topNav)
-   }
+    () =>  {
+        // NavBar Burger Icon
+        iconNavBar.addEventListener("click", editNav);
+        // Open Modal
+        modalBtn.forEach(btn => btn.addEventListener("click", launchModal));
+        // Close Modal
+        closeBtn.forEach(btn => btn.addEventListener("click", closeModal));
+        // Check and Submit Form
+        btnSubmit.addEventListener("click", validate);
+        // Observe top Nav et appelle setModalStyle
+        new ResizeObserver(setModalStyle).observe(topNav)
+    }
 )();
 
-/**
- * # Function
- * ## setModalStyle
- * Définis le marginTop appliqué à la modale:
- * - en fonction de la taille de fenêtre
- * - et de la taille de l'élément '.topnav'
- */
-function setModalStyle(){
-   // get screen
-   const breakpoint = 800
-   const screenH = screen.height
-   const screenW = screen.width
-   // get nav
-   const top = getTopNavHeight()
-   // set modal = screen - nav
-   const modal = screenH - top;
-   if (screenW < breakpoint) {
-      // modalContent.style.minHeight = `${modal}px`;
-      // modalContent.style.maxHeight = `660px`;
-      modalBg.style.marginTop = `${top}px`
-   }
-   else {
-      modalContent.dataset.height = 'unset'
-      modalContent.style.minHeight = 'unset';
-      modalBg.style.marginTop = 'unset'
-   }
-}
-
-/**
- * # Function
- * ## getTopNavHeight
- * Calcule la hauteur totale de l'élément **.topnav**.
- * @returns {number}
- */
-function getTopNavHeight() {
-   // hauteur de '.topnav' (height et padding)
-   let innerHeight = topNav.clientHeight
-
-   // récupère les styles appliqués à '.topnav'
-   let style = getComputedStyle(topNav);
-
-   // extrait les margin top et bottom || renvoie 0 si nuls
-   let marginTop = parseInt(style.marginTop) || 0
-   let marginBottom = parseInt(style.marginBottom) || 0
-
-   // calcul et retourne la hauteur totale
-   return innerHeight + marginTop + marginBottom
-}
 /**
  * # Function
  * ## editNav()
  * Ajoute ou supprime la classe **'responsive'** qui permet de dérouler le menu en vue mobile
  */
 function editNav() {
-   const topNav = document.getElementById("myTopnav");
-   if (topNav.className === "topnav") {
-      topNav.className += " responsive";
-   } else {
-      topNav.className = "topnav";
-   }
+    const topNav = document.getElementById("myTopnav");
+    if (topNav.className === "topnav") {
+        topNav.className += " responsive";
+    } else {
+        topNav.className = "topnav";
+    }
 }
 
 /**
@@ -105,10 +60,10 @@ function editNav() {
  * Affiche la modal en modifiant la valeur de *display*
  */
 function launchModal() {
-   setModalStyle()
-   modalBg.style.display = "flex";
-   hero.style.visibility = "hidden";
-   footer.style.display = "none";
+    setModalStyle()
+    modalBg.style.display = "flex";
+    hero.style.visibility = "hidden";
+    footer.style.display = "none";
 }
 
 /**
@@ -117,9 +72,9 @@ function launchModal() {
  * Ferme la modal en modifiant la valeur de *display*
  */
 function closeModal() {
-   modalBg.style.display = "none";
-   hero.style.visibility = "visible";
-   footer.style.display = "block";
+    modalBg.style.display = "none";
+    hero.style.visibility = "visible";
+    footer.style.display = "block";
 }
 
 /**
@@ -131,22 +86,58 @@ function closeModal() {
  * @param e [click]
  */
 function validate(e) {
-   e.preventDefault();
-   // Form Elements
+    e.preventDefault();
+    try {
+        (function () {
+            if (checkUserInput()) {
+                modalBg.dataset.formValid = "true";
+            } else {
+                modalBg.dataset.formValid = "false";
+            }
+        })();
+    } catch (e) {
+        return e;
+    }
+}
 
-   try {
-      (function () {
-         if (checkUserInput()) {
-            modalBg.dataset.formValid = "true";
-            // printMsg("Formulaire envoyé avec succès!", "green", 21, "font-weight: bold");
-         } else {
-            modalBg.dataset.formValid = "false";
-            // throw new Error("Le formulaire ne peut être envoyé car il n'est pas valide");
-         }
-      })();
-   } catch (e) {
-      return e;
-   }
+/**
+ * # Function
+ * ## setModalStyle
+ * Définis le marginTop appliqué à la modale:
+ * - en fonction de la taille de fenêtre
+ * - et de la taille de l'élément '.topnav'
+ */
+function setModalStyle() {
+    // get nav
+    const top = getTopNavHeight()
+    // get screen
+    const breakpoint = 800
+    const screenW = screen.width
+    if (screenW < breakpoint)
+        return modalBg.style.marginTop = `${top}px`
+    return modalBg.style.marginTop = `unset`
+}
+
+
+/**
+ * # Function
+ * ## getTopNavHeight
+ * Calcule la hauteur totale de l'élément **.topnav**.
+ * @returns {number}
+ */
+function getTopNavHeight() {
+    // hauteur de '.topnav' (height et padding)
+    let innerHeight = topNav.clientHeight
+
+    // récupère les styles appliqués à '.topnav'
+    let style = getComputedStyle(topNav);
+
+    // extrait les margin top et bottom || renvoie 0 si nuls
+    let marginTop = parseInt(style.marginTop) || 0
+    let marginBottom = parseInt(style.marginBottom) || 0
+
+    // calcul et retourne la hauteur totale
+    return innerHeight + marginTop + marginBottom
 }
 
 /**
@@ -156,111 +147,82 @@ function validate(e) {
  * @returns {boolean}
  */
 function checkUserInput() {
-   /**
-    * Sera **incrémenter** après chaque **validation valide**
-    * @type {number} || Retourne le **nombre de saisies valides**
-    */
-   let validInputs = 0;
+    /**
+     * Sera **incrémenter** après chaque **validation valide**
+     * @type {number} || Retourne le **nombre de saisies valides**
+     */
+    let validInputs = 0;
 
-   /**
-    * Sera **incrémenter** après chaque **validation**
-    * @type {number} || Retourne le nombre de **saisies totales devant être validés**
-    */
-   let requiredValid = 0;
+    /**
+     * Sera **incrémenter** après chaque **validation**
+     * @type {number} || Retourne le nombre de **saisies totales devant être validés**
+     */
+    let requiredValid = 0;
 
-   // Retour console
-   // printMsg(
-   //    "Checking Values...",
-   //    "limegreen",
-   //    13,
-   //    "font-weight: bold",
-   //    "text-decoration: underline"
-   // );
-
-   /**
-    * Lance les vérifications pour chaques saisies obligatoires
-    */
-   (function () {
-      // DOM Form Elements
-      const firstname = document.getElementById("first");
-      const lastname = document.getElementById("last");
-      const email = document.getElementById("email");
-      const birthdate = document.getElementById("birthdate");
-      const quantity = document.getElementById("quantity");
-      const radios = [...document.querySelectorAll("#radios .checkbox-input")];
-      const checkboxCGU = document.querySelector("#checkboxes #checkbox1");
-      requiredValid++;
-      if (!isEmpty(firstname)) {
-         if (!minLength(firstname, 2)) {
-            setValidTo(firstname);
+    /**
+     * Lance les vérifications pour chaque saisie obligatoires
+     */
+    (function () {
+        // DOM Form Elements
+        const firstname = document.getElementById("first");
+        const lastname = document.getElementById("last");
+        const email = document.getElementById("email");
+        const birthdate = document.getElementById("birthdate");
+        const quantity = document.getElementById("quantity");
+        const radios = [...document.querySelectorAll("#radios .checkbox-input")];
+        const checkboxCGU = document.querySelector("#checkboxes #checkbox1");
+        requiredValid++;
+        if (!isEmpty(firstname)) {
+            if (!minLength(firstname, 2)) {
+                setValidTo(firstname);
+                validInputs++;
+            }
+        }
+        // validation nom
+        requiredValid++;
+        if (!isEmpty(lastname)) {
+            if (!minLength(lastname, 2)) {
+                setValidTo(lastname);
+                validInputs++;
+            }
+        }
+        // validation mail
+        requiredValid++;
+        if (!isEmpty(email)) {
+            if (isEmail(email)) {
+                setValidTo(email);
+                validInputs++;
+            }
+        }
+        // validation date de naissance
+        requiredValid++;
+        if (!isEmpty(birthdate)) {
+            setValidTo(birthdate);
             validInputs++;
-         }
-      }
-      // validation nom
-      requiredValid++;
-      if (!isEmpty(lastname)) {
-         if (!minLength(lastname, 2)) {
-            setValidTo(lastname);
+        }
+        // validation nombre de participation
+        requiredValid++;
+        if (!isEmpty(quantity)) {
+            setValidTo(quantity);
             validInputs++;
-         }
-      }
-      // validation mail
-      requiredValid++;
-      if (!isEmpty(email)) {
-         if (isEmail(email)) {
-            setValidTo(email);
+        }
+        // validation choix de la ville
+        requiredValid++;
+        if (!isSelected(radios)) {
+            setValidTo(radios.at(0));
             validInputs++;
-         }
-      }
-      // validation date de naissance
-      requiredValid++;
-      if (!isEmpty(birthdate)) {
-         setValidTo(birthdate);
-         validInputs++;
-      }
-      // validation nombre de participation
-      requiredValid++;
-      if (!isEmpty(quantity)) {
-         setValidTo(quantity);
-         validInputs++;
-      }
-      // validation choix de la ville
-      requiredValid++;
-      if (!isSelected(radios)) {
-         setValidTo(radios.at(0));
-         validInputs++;
-      }
-      // validation CGU
-      requiredValid++;
-      if (!isChecked(checkboxCGU)) {
-         setValidTo(checkboxCGU);
-         validInputs++;
-      }
-   })();
+        }
+        // validation CGU
+        requiredValid++;
+        if (!isChecked(checkboxCGU)) {
+            setValidTo(checkboxCGU);
+            validInputs++;
+        }
+    })();
 
-   // Retour Console
-   // printMsg(`validInputs: ${validInputs}`, undefined, 11);
-   // printMsg(`requiredValid: ${requiredValid}`, undefined, 11);
-
-   // output
-   return validInputs === requiredValid;
+    // output
+    return validInputs === requiredValid;
 }
-
-/**
- * # Fonction
- * ## printMsg()
- * Fonction raccourcie pour affecter des styles aux messages de retour console
- * @param msg
- * @param color | Par défaut 'black'
- * @param fontSize | Par défaut '15'
- * @param styles | Styles Optionnels...
- */
-// function printMsg(msg, color = "black", fontSize = 15, ...styles) {
-//    const optionStyle = [];
-//    styles.forEach(style => optionStyle.push(style));
-//    const allStyles = `color: ${color}; font-size: ${fontSize}px; ${optionStyle.join(" ; ")}`;
-//    // console.log(`%c${msg}`, allStyles);
-// }
 
 /**
  * # Function
@@ -270,11 +232,11 @@ function checkUserInput() {
  * @returns {boolean}
  */
 function isEmpty(input) {
-   if (input.value.trim() === "") {
-      setErrorTo(input, `${input.ariaLabel || input.title} doit être renseigné`);
-      return true;
-   }
-   return false;
+    if (input.value.trim() === "") {
+        setErrorTo(input, `${input.ariaLabel || input.title} doit être renseigné`);
+        return true;
+    }
+    return false;
 }
 
 /**
@@ -286,11 +248,11 @@ function isEmpty(input) {
  * @returns {boolean}
  */
 function minLength(input, i) {
-   if (input.value.trim().length < i) {
-      setErrorTo(input, `${input.ariaLabel} doit faire au moins 2 lettres`);
-      return true;
-   }
-   return false;
+    if (input.value.trim().length < i) {
+        setErrorTo(input, `${input.ariaLabel} doit faire au moins 2 lettres`);
+        return true;
+    }
+    return false;
 }
 
 /**
@@ -301,14 +263,14 @@ function minLength(input, i) {
  * @returns {boolean}
  */
 function isEmail(email) {
-   const regex =
-      /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-   if (regex.test(email.value.trim())) {
-      return true;
-   } else {
-      setErrorTo(email, "Veuillez renseigner un email valid svp");
-      return false;
-   }
+    const regex =
+        /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    if (regex.test(email.value.trim())) {
+        return true;
+    } else {
+        setErrorTo(email, "Veuillez renseigner un email valid svp");
+        return false;
+    }
 }
 
 /**
@@ -319,11 +281,11 @@ function isEmail(email) {
  * @returns {boolean}
  */
 function isSelected(radios) {
-   if (radios.every(radio => !radio.checked)) {
-      setErrorTo(radios[0], "Vous devez choisir un tournois");
-      return true;
-   }
-   return false;
+    if (radios.every(radio => !radio.checked)) {
+        setErrorTo(radios[0], "Vous devez choisir un tournois");
+        return true;
+    }
+    return false;
 }
 
 /**
@@ -334,11 +296,11 @@ function isSelected(radios) {
  * @returns {boolean}
  */
 function isChecked(checkbox) {
-   if (!checkbox.checked) {
-      setErrorTo(checkbox, "Vous devez accepter les conditions d'utilisation");
-      return true;
-   }
-   return false;
+    if (!checkbox.checked) {
+        setErrorTo(checkbox, "Vous devez accepter les conditions d'utilisation");
+        return true;
+    }
+    return false;
 }
 
 /**
@@ -346,14 +308,15 @@ function isChecked(checkbox) {
  * ## setErrorTo()
  * Active les styles [data-error-visible] pour l'élément parent
  * Affiche le message d'erreur
- * @param input, DOM Element
- * @param message, Message d'erreur
+ * @param input DOM Element
+ * @param message Message d'erreur
+ * @param element Element sur lequel sera appliqué le message d'erreur. Par défaut : **parentElement**
  */
 function setErrorTo(input, message) {
-   const formData = input.parentElement;
-   formData.dataset.error = message;
-   formData.dataset.errorVisible = true;
-   // throw new Error(message);
+    const formData = input.parentElement;
+    formData.dataset.error = message;
+    formData.dataset.errorVisible = 'true';
+    // throw new Error(message);
 }
 
 /**
@@ -363,7 +326,7 @@ function setErrorTo(input, message) {
  * @param input, DOM Element
  */
 function setValidTo(input) {
-   const formData = input.parentElement;
-   formData.dataset.error = "";
-   formData.dataset.errorVisible = false;
+    const formData = input.parentElement;
+    formData.dataset.error = "";
+    formData.dataset.errorVisible = 'false';
 }
