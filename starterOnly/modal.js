@@ -1,5 +1,5 @@
 /**
- * # DOM ELEMETS
+ * # DOM ELEMENTS
  * @type {HTMLElement}
  */
 
