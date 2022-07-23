@@ -2,10 +2,13 @@
  * # DOM ELEMETS
  * @type {HTMLElement}
  */
+
 // DOM NavBar
+const topNav = document.querySelector('#myTopnav')
 const iconNavBar = document.getElementById("iconNavBar");
 // DOM Modal
 const modalBg = document.querySelector(".bground");
+const modalContent = document.querySelector(".content");
 const modalBtn = [...document.querySelectorAll(".modal-btn")];
 const closeBtn = [...document.querySelectorAll(".close-modal")];
 const btnSubmit = document.querySelector(".btn-submit");
@@ -29,9 +32,59 @@ const footer = document.querySelector("footer");
       closeBtn.forEach(btn => btn.addEventListener("click", closeModal));
       // Check and Submit Form
       btnSubmit.addEventListener("click", validate);
+      // Observe top Nav et appelle setModalStyle
+      new ResizeObserver(setModalStyle).observe(topNav)
    }
 )();
 
+/**
+ * # Function
+ * ## setModalStyle
+ * Définis le marginTop appliqué à la modale:
+ * - en fonction de la taille de fenêtre
+ * - et de la taille de l'élément '.topnav'
+ */
+function setModalStyle(){
+   // get screen
+   const breakpoint = 800
+   const screenH = screen.height
+   const screenW = screen.width
+   // get nav
+   const top = getTopNavHeight()
+   // set modal = screen - nav
+   const modal = screenH - top;
+   if (screenW < breakpoint) {
+      // modalContent.style.minHeight = `${modal}px`;
+      // modalContent.style.maxHeight = `660px`;
+      modalBg.style.marginTop = `${top}px`
+   }
+   else {
+      modalContent.dataset.height = 'unset'
+      modalContent.style.minHeight = 'unset';
+      modalBg.style.marginTop = 'unset'
+   }
+}
+
+/**
+ * # Function
+ * ## getTopNavHeight
+ * Calcule la hauteur totale de l'élément **.topnav**.
+ * @returns {number}
+ */
+function getTopNavHeight() {
+   // hauteur de '.topnav' (height et padding)
+   let innerHeight = topNav.clientHeight
+
+   // récupère les styles appliqués à '.topnav'
+   let style = getComputedStyle(topNav);
+
+   // extrait les margin top et bottom || renvoie 0 si nuls
+   let marginTop = parseInt(style.marginTop) || 0
+   let marginBottom = parseInt(style.marginBottom) || 0
+
+   // calcul et retourne la hauteur totale
+   return innerHeight + marginTop + marginBottom
+}
 /**
  * # Function
  * ## editNav()
@@ -52,9 +105,10 @@ function editNav() {
  * Affiche la modal en modifiant la valeur de *display*
  */
 function launchModal() {
-   modalBg.style.display = "block";
+   setModalStyle()
+   modalBg.style.display = "flex";
    hero.style.visibility = "hidden";
-   footer.style.visibility = "hidden";
+   footer.style.display = "none";
 }
 
 /**
@@ -65,7 +119,7 @@ function launchModal() {
 function closeModal() {
    modalBg.style.display = "none";
    hero.style.visibility = "visible";
-   footer.style.visibility = "visible";
+   footer.style.display = "block";
 }
 
 /**
