@@ -1,3 +1,4 @@
+//region DOM Elements
 /**
  * # DOM ELEMENTS
  * @type {HTMLElement}
@@ -12,13 +13,14 @@ const modalBg = document.querySelector(".bground");
 const modalBtn = [...document.querySelectorAll(".modal-btn")];
 const closeBtn = [...document.querySelectorAll(".close-modal")];
 const btnSubmit = document.querySelector(".btn-submit");
-
 // DOM Hero
 const hero = document.querySelector(".hero-section");
 
 // DOM Footer
 const footer = document.querySelector("footer");
+//endregion
 
+//region Event Listeners
 /**
  * # Event Listener
  * ## IIFE (Immediately Invoked Function Expression)
@@ -26,7 +28,7 @@ const footer = document.querySelector("footer");
  */
 
 (
-    () =>  {
+    () => {
         // NavBar Burger Icon
         iconNavBar.addEventListener("click", editNav);
         // Open Modal
@@ -39,7 +41,11 @@ const footer = document.querySelector("footer");
         new ResizeObserver(setModalStyle).observe(topNav)
     }
 )();
+//endregion
 
+//region Functions
+
+//region Navbar
 /**
  * # Function
  * ## editNav()
@@ -54,6 +60,9 @@ function editNav() {
     }
 }
 
+//endregion
+
+//region Modal
 /**
  * # Function
  * ## launchModal()
@@ -79,29 +88,6 @@ function closeModal() {
 
 /**
  * # Function
- * ## validate(e)
- * **Envoie le formulaire** si les saisies utilisateurs sont **valides**
- *
- * **Lève une Erreur** sur le formulaire est **invalide**
- * @param e [click]
- */
-function validate(e) {
-    e.preventDefault();
-    try {
-        (function () {
-            if (checkUserInput()) {
-                modalBg.dataset.formValid = "true";
-            } else {
-                modalBg.dataset.formValid = "false";
-            }
-        })();
-    } catch (e) {
-        return e;
-    }
-}
-
-/**
- * # Function
  * ## setModalStyle
  * Définis le marginTop appliqué à la modale:
  * - en fonction de la taille de fenêtre
@@ -117,7 +103,6 @@ function setModalStyle() {
         return modalBg.style.marginTop = `${top}px`
     return modalBg.style.marginTop = `unset`
 }
-
 
 /**
  * # Function
@@ -140,6 +125,37 @@ function getTopNavHeight() {
     return innerHeight + marginTop + marginBottom
 }
 
+//endregion
+
+//region Formulaire
+
+//region MAIN-Validate
+/**
+ * # Function
+ * ## validate(e)
+ * **Envoie le formulaire** si les saisies utilisateurs sont **valides**
+ *
+ * **Lève une Erreur** sur le formulaire est **invalide**
+ * @param e [click]
+ */
+function validate(e) {
+    e.preventDefault();
+    try {
+        (function () {
+            if (checkUserInput()) {
+                modalBg.dataset.formValid = "true";
+            } else {
+                modalBg.dataset.formValid = "false";
+            }
+        })();
+    } catch (e) {
+        return e;
+    }
+}
+//endregion
+
+
+//region Check all Inputs
 /**
  * # Function
  * ## checkUserInput
@@ -171,9 +187,11 @@ function checkUserInput() {
         const quantity = document.getElementById("quantity");
         const radios = [...document.querySelectorAll("#radios .checkbox-input")];
         const checkboxCGU = document.querySelector("#checkboxes #checkbox1");
+
         requiredValid++;
+        // validation prénom
         if (!isEmpty(firstname)) {
-            if (!minLength(firstname, 2)) {
+            if (!minLength(firstname)) {
                 setValidTo(firstname);
                 validInputs++;
             }
@@ -181,7 +199,7 @@ function checkUserInput() {
         // validation nom
         requiredValid++;
         if (!isEmpty(lastname)) {
-            if (!minLength(lastname, 2)) {
+            if (!minLength(lastname)) {
                 setValidTo(lastname);
                 validInputs++;
             }
@@ -223,7 +241,9 @@ function checkUserInput() {
     // output
     return validInputs === requiredValid;
 }
+//endregion
 
+//region Individual validation
 /**
  * # Function
  * ## isEMpty()
@@ -247,7 +267,7 @@ function isEmpty(input) {
  * @param i | Valeure minimale
  * @returns {boolean}
  */
-function minLength(input, i) {
+function minLength(input, i=2) {
     if (input.value.trim().length < i) {
         setErrorTo(input, `${input.ariaLabel} doit faire au moins 2 lettres`);
         return true;
@@ -302,7 +322,9 @@ function isChecked(checkbox) {
     }
     return false;
 }
+//endregion
 
+//region Validation Response || Valid / Error
 /**
  * # Function
  * ## setErrorTo()
@@ -329,3 +351,7 @@ function setValidTo(input) {
     formData.dataset.error = "";
     formData.dataset.errorVisible = 'false';
 }
+//endregion
+
+//endregion
+//endregion
